@@ -25632,11 +25632,11 @@ var _favorite = __webpack_require__(83);
 
 var _favorite2 = _interopRequireDefault(_favorite);
 
-var _page = __webpack_require__(84);
+var _page = __webpack_require__(86);
 
 var _page2 = _interopRequireDefault(_page);
 
-var _navbar = __webpack_require__(85);
+var _navbar = __webpack_require__(87);
 
 var _navbar2 = _interopRequireDefault(_navbar);
 
@@ -25837,9 +25837,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _watchlistListComponent = __webpack_require__(81);
+var _watchlistTableComponent = __webpack_require__(81);
 
-var _watchlistListComponent2 = _interopRequireDefault(_watchlistListComponent);
+var _watchlistTableComponent2 = _interopRequireDefault(_watchlistTableComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25848,6 +25848,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//Component requires
+
 
 var Watchlist = function (_React$Component) {
 	_inherits(Watchlist, _React$Component);
@@ -25869,7 +25872,7 @@ var Watchlist = function (_React$Component) {
 					{ className: 'title' },
 					'These are the movies you have yet to watch:'
 				),
-				_react2.default.createElement(_watchlistListComponent2.default, null)
+				_react2.default.createElement(_watchlistTableComponent2.default, null)
 			);
 		}
 	}]);
@@ -25898,9 +25901,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _watchlistListItem = __webpack_require__(82);
+var _watchlistItem = __webpack_require__(82);
 
-var _watchlistListItem2 = _interopRequireDefault(_watchlistListItem);
+var _watchlistItem2 = _interopRequireDefault(_watchlistItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25913,10 +25916,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //Component requires
 
 
-var ListComponent = function (_React$Component) {
-	_inherits(ListComponent, _React$Component);
+var WatchlistTableComponent = function (_React$Component) {
+	_inherits(WatchlistTableComponent, _React$Component);
 
-	_createClass(ListComponent, [{
+	_createClass(WatchlistTableComponent, [{
 		key: 'onDelete',
 
 		// Custom functions
@@ -25942,10 +25945,10 @@ var ListComponent = function (_React$Component) {
 
 	}]);
 
-	function ListComponent() {
-		_classCallCheck(this, ListComponent);
+	function WatchlistTableComponent() {
+		_classCallCheck(this, WatchlistTableComponent);
 
-		var _this = _possibleConstructorReturn(this, (ListComponent.__proto__ || Object.getPrototypeOf(ListComponent)).call(this));
+		var _this = _possibleConstructorReturn(this, (WatchlistTableComponent.__proto__ || Object.getPrototypeOf(WatchlistTableComponent)).call(this));
 
 		_this.state = {
 			movies: ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar']
@@ -25955,12 +25958,12 @@ var ListComponent = function (_React$Component) {
 		return _this;
 	}
 
-	_createClass(ListComponent, [{
+	_createClass(WatchlistTableComponent, [{
 		key: 'render',
 		value: function render() {
 			var movies = this.state.movies;
 			movies = movies.map(function (item, index) {
-				return _react2.default.createElement(_watchlistListItem2.default, { title: item, key: index, onDelete: this.onDelete });
+				return _react2.default.createElement(_watchlistItem2.default, { title: item, key: index, onDelete: this.onDelete });
 			}.bind(this));
 
 			return _react2.default.createElement(
@@ -26003,12 +26006,12 @@ var ListComponent = function (_React$Component) {
 		}
 	}]);
 
-	return ListComponent;
+	return WatchlistTableComponent;
 }(_react2.default.Component);
 
 ;
 
-exports.default = ListComponent;
+exports.default = WatchlistTableComponent;
 
 /***/ }),
 /* 82 */
@@ -26035,19 +26038,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ListItem = function (_React$Component) {
-	_inherits(ListItem, _React$Component);
+var WatchlistItem = function (_React$Component) {
+	_inherits(WatchlistItem, _React$Component);
 
-	function ListItem() {
-		_classCallCheck(this, ListItem);
+	function WatchlistItem() {
+		_classCallCheck(this, WatchlistItem);
 
-		var _this = _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).call(this));
+		var _this = _possibleConstructorReturn(this, (WatchlistItem.__proto__ || Object.getPrototypeOf(WatchlistItem)).call(this));
 
 		_this.handleDelete = _this.handleDelete.bind(_this);
 		return _this;
 	}
 
-	_createClass(ListItem, [{
+	_createClass(WatchlistItem, [{
 		key: "handleDelete",
 		value: function handleDelete() {
 			this.props.onDelete(this.props.title);
@@ -26070,7 +26073,7 @@ var ListItem = function (_React$Component) {
 					null,
 					_react2.default.createElement(
 						"button",
-						{ className: "button is-danger", onClick: this.handleDelete },
+						{ className: "button is-danger is-outlined", onClick: this.handleDelete },
 						"X"
 					)
 				)
@@ -26078,15 +26081,213 @@ var ListItem = function (_React$Component) {
 		}
 	}]);
 
-	return ListItem;
+	return WatchlistItem;
 }(_react2.default.Component);
 
 ;
 
-exports.default = ListItem;
+exports.default = WatchlistItem;
 
 /***/ }),
 /* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _favoriteTableComponent = __webpack_require__(84);
+
+var _favoriteTableComponent2 = _interopRequireDefault(_favoriteTableComponent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//Component requires
+
+
+var Favorite = function (_React$Component) {
+	_inherits(Favorite, _React$Component);
+
+	function Favorite() {
+		_classCallCheck(this, Favorite);
+
+		return _possibleConstructorReturn(this, (Favorite.__proto__ || Object.getPrototypeOf(Favorite)).apply(this, arguments));
+	}
+
+	_createClass(Favorite, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'h1',
+					{ className: 'title' },
+					'These are your favorite movies:'
+				),
+				_react2.default.createElement(_favoriteTableComponent2.default, null)
+			);
+		}
+	}]);
+
+	return Favorite;
+}(_react2.default.Component);
+
+;
+
+exports.default = Favorite;
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _favoriteItem = __webpack_require__(85);
+
+var _favoriteItem2 = _interopRequireDefault(_favoriteItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//Component requires
+
+
+var FavoriteTableComponent = function (_React$Component) {
+	_inherits(FavoriteTableComponent, _React$Component);
+
+	_createClass(FavoriteTableComponent, [{
+		key: 'onDelete',
+
+		// Custom functions
+		value: function onDelete(item) {
+			var updatedMovies = this.state.movies.filter(function (val, index) {
+				return item !== val;
+			});
+			this.setState({
+				movies: updatedMovies
+			});
+		}
+	}, {
+		key: 'onAdd',
+		value: function onAdd(item) {
+			var updatedMovies = this.state.movies;
+			updatedMovies.push(item);
+			this.setState({
+				movies: updatedMovies
+			});
+		}
+
+		// Component functions
+
+	}]);
+
+	function FavoriteTableComponent() {
+		_classCallCheck(this, FavoriteTableComponent);
+
+		var _this = _possibleConstructorReturn(this, (FavoriteTableComponent.__proto__ || Object.getPrototypeOf(FavoriteTableComponent)).call(this));
+
+		_this.state = {
+			movies: ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar']
+		};
+		_this.onDelete = _this.onDelete.bind(_this);
+		_this.onAdd = _this.onAdd.bind(_this);
+		return _this;
+	}
+
+	_createClass(FavoriteTableComponent, [{
+		key: 'render',
+		value: function render() {
+			var movies = this.state.movies;
+			movies = movies.map(function (item, index) {
+				return _react2.default.createElement(_favoriteItem2.default, { title: item, key: index, onDelete: this.onDelete });
+			}.bind(this));
+
+			return _react2.default.createElement(
+				'table',
+				{ className: 'table is-fullwidth is-hoverable' },
+				_react2.default.createElement(
+					'thead',
+					null,
+					_react2.default.createElement(
+						'tr',
+						null,
+						_react2.default.createElement(
+							'th',
+							null,
+							'Name'
+						),
+						_react2.default.createElement(
+							'th',
+							null,
+							'Director'
+						),
+						_react2.default.createElement(
+							'th',
+							null,
+							'Year'
+						),
+						_react2.default.createElement(
+							'th',
+							null,
+							'Your rating'
+						),
+						_react2.default.createElement(
+							'th',
+							null,
+							'Remove'
+						)
+					)
+				),
+				_react2.default.createElement(
+					'tbody',
+					null,
+					movies
+				)
+			);
+		}
+	}]);
+
+	return FavoriteTableComponent;
+}(_react2.default.Component);
+
+;
+
+exports.default = FavoriteTableComponent;
+
+/***/ }),
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26110,39 +26311,59 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Favorite = function (_React$Component) {
-	_inherits(Favorite, _React$Component);
+var FavoriteItem = function (_React$Component) {
+	_inherits(FavoriteItem, _React$Component);
 
-	function Favorite() {
-		_classCallCheck(this, Favorite);
+	function FavoriteItem() {
+		_classCallCheck(this, FavoriteItem);
 
-		return _possibleConstructorReturn(this, (Favorite.__proto__ || Object.getPrototypeOf(Favorite)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (FavoriteItem.__proto__ || Object.getPrototypeOf(FavoriteItem)).call(this));
+
+		_this.handleDelete = _this.handleDelete.bind(_this);
+		return _this;
 	}
 
-	_createClass(Favorite, [{
+	_createClass(FavoriteItem, [{
+		key: "handleDelete",
+		value: function handleDelete() {
+			this.props.onDelete(this.props.title);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
-				"div",
+				"tr",
 				null,
 				_react2.default.createElement(
-					"h1",
-					{ className: "title" },
-					"These are your favorite movies:"
+					"td",
+					null,
+					this.props.title
+				),
+				_react2.default.createElement("td", null),
+				_react2.default.createElement("td", null),
+				_react2.default.createElement("td", null),
+				_react2.default.createElement(
+					"td",
+					null,
+					_react2.default.createElement(
+						"button",
+						{ className: "button is-danger is-outlined", onClick: this.handleDelete },
+						"X"
+					)
 				)
 			);
 		}
 	}]);
 
-	return Favorite;
+	return FavoriteItem;
 }(_react2.default.Component);
 
 ;
 
-exports.default = Favorite;
+exports.default = FavoriteItem;
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26198,7 +26419,7 @@ var Page404 = function (_React$Component) {
 exports.default = Page404;
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

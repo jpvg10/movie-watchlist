@@ -1,9 +1,9 @@
 import React from 'react';
 
 //Component requires
-import ListItem from './watchlist-list-item';
+import WatchlistItem from './watchlist-item';
 
-class ListComponent extends React.Component {
+class WatchlistTableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
 		var updatedMovies = this.state.movies.filter(function(val, index){
@@ -36,7 +36,7 @@ class ListComponent extends React.Component {
 		var movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<ListItem title={item} key={index} onDelete={this.onDelete} />
+				<WatchlistItem title={item} key={index} onDelete={this.onDelete} />
 			);
 		}.bind(this));
 
@@ -58,4 +58,4 @@ class ListComponent extends React.Component {
 	}
 };
 
-export default ListComponent;
+export default WatchlistTableComponent;

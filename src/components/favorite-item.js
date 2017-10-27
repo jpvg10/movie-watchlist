@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ListItem extends React.Component {
+class FavoriteItem extends React.Component {
 	constructor() {
 		super();
 		this.handleDelete = this.handleDelete.bind(this);
@@ -16,12 +16,13 @@ class ListItem extends React.Component {
 				<td>{this.props.title}</td>
 				<td></td>
 				<td></td>
+				<td></td>
 				<td>
-					<button className="button is-danger" onClick={this.handleDelete}>X</button>
+					<button className="button is-danger is-outlined" onClick={this.handleDelete}>X</button>
 				</td>				
 			</tr>
 		);
 	}
 };
 
-export default ListItem;
+export default FavoriteItem;
