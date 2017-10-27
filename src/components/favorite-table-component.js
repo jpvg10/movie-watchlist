@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 //Component requires
 import FavoriteItem from './favorite-item';
@@ -26,7 +27,7 @@ class FavoriteTableComponent extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			movies: ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar']
+			movies: []
 		};
 		this.onDelete = this.onDelete.bind(this);
 		this.onAdd = this.onAdd.bind(this);
@@ -56,6 +57,18 @@ class FavoriteTableComponent extends React.Component {
 				</tbody>
 			</table>
 		);
+	}
+
+	componentDidMount() {
+		axios.get('/api/movies')
+			.then(function (response){
+				this.setState({
+					movies: response.data
+				});
+			}.bind(this))
+			.catch(function (error){
+				console.log(error);
+			});
 	}
 };
 

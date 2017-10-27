@@ -3,7 +3,12 @@ const app = express();
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('*', function(req, res){
+app.get('/api/movies', function(req, res){
+	let movies = ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar'];
+	res.send(movies);
+});
+
+app.use(function(req, res){
 	res.sendFile(__dirname + '/public/index.html');
 });
 
