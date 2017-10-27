@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "webpack",
-    "start": "node server",
+    "start": "webpack -p && node server",
     "start-dev": "concurrently \"webpack -w\" \"nodemon server\""
   },
   "author": "",
