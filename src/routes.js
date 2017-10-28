@@ -14,14 +14,18 @@ class AppRoutes extends React.Component {
 		return(
 			<div>
 				<Navbar />
-				<Switch>
-					<Route exact path="/home" component={Home} />
-					<Route exact path="/" component={Home} />
-					<Route exact path="/search" component={Search} />
-					<Route exact path="/watchlist" component={Watchlist} />
-					<Route exact path="/favorite" component={Favorite} />
-					<Route component={Page404} />
-				</Switch>
+				<section className="section">
+					<div className="container">
+						<Switch>
+							<Route exact path="/home" component={Home} />
+							<Route exact path="/" component={Home} />
+							<Route exact path="/search" component={Search} />
+							<Route exact path="/watchlist" component={Watchlist} />
+							<Route exact path="/favorite" component={Favorite} />
+							<Route component={Page404} />
+						</Switch>
+					</div>
+				</section>
 			</div>
 		);
 	}
