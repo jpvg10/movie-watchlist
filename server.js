@@ -3,13 +3,14 @@ const app = express();
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/api/movies', function(req, res){
-	let movies = ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar'];
-	res.send(movies);
-});
+// Routes
+app.use('/api', require('./routes/api'));
+app.use('/', require('./routes/views'));
 
-app.use(function(req, res){
-	res.sendFile(__dirname + '/public/index.html');
+// Error handling
+app.use(function(err, req, res, next) {
+	console.log(err.message);
+	res.status(500).send({"Error" : err.message});
 });
 
 app.listen(3000, function(){
