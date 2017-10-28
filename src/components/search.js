@@ -7,15 +7,14 @@ class Search extends React.Component {
 			 	<h1 className="title">Search for movies</h1>
 
 			 	<form>
-			 	<div className="field has-addons">
-					<div className="control">
-						<input className="input" type="text" placeholder="Name of the movie" />
+				 	<div className="field has-addons">
+						<div className="control is-expanded">
+							<input className="input" type="text" placeholder="Name of the movie" />
+						</div>
+						<div className="control">
+							<a className="button is-info">Search</a>
+						</div>
 					</div>
-					<div className="control">
-						<a className="button is-info">Search</a>
-					</div>
-				</div>
-
 			 	</form>
 			</div>
 		);
