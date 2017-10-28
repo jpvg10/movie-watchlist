@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 //Component requires
-import WatchlistItem from './watchlist-item';
+import Item from './item';
 
-class WatchlistTableComponent extends React.Component {
+class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
 		var updatedMovies = this.state.movies.filter(function(val, index){
@@ -37,7 +37,7 @@ class WatchlistTableComponent extends React.Component {
 		var movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<WatchlistItem title={item} key={index} onDelete={this.onDelete} />
+				<Item title={item} key={index} onDelete={this.onDelete} />
 			);
 		}.bind(this));
 
@@ -48,6 +48,7 @@ class WatchlistTableComponent extends React.Component {
 						<th>Name</th>
 						<th>Director</th>
 						<th>Year</th>
+						<th>Your rating</th>
 						<th>Remove</th>
 					</tr>
 				</thead>
@@ -71,4 +72,4 @@ class WatchlistTableComponent extends React.Component {
 	}
 };
 
-export default WatchlistTableComponent;
+export default TableComponent;

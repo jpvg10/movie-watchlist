@@ -8,7 +8,8 @@ class Navbar extends React.Component {
 				<div className="container">
 					<div className="navbar-brand">
 						<Link className="navbar-item" to="/">
-							<h2>Movie Watchlist</h2>
+							<img src="/img/clapboard.png" />
+							<span className="title is-4">Movie Watchlist</span>
 						</Link>
 
 						<button className="button navbar-burger">

@@ -3,7 +3,7 @@ import React from 'react';
 //Component requires
 import ReactStars from 'react-stars'
 
-class FavoriteItem extends React.Component {
+class Item extends React.Component {
 	constructor() {
 		super();
 		this.handleDelete = this.handleDelete.bind(this);
@@ -30,4 +30,4 @@ class FavoriteItem extends React.Component {
 	}
 };
 
-export default FavoriteItem;
+export default Item;

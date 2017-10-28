@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 //Component requires
-import FavoriteItem from './favorite-item';
+import Item from './item';
 
-class FavoriteTableComponent extends React.Component {
+class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
 		var updatedMovies = this.state.movies.filter(function(val, index){
@@ -37,7 +37,7 @@ class FavoriteTableComponent extends React.Component {
 		var movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<FavoriteItem title={item} key={index} onDelete={this.onDelete} />
+				<Item title={item} key={index} onDelete={this.onDelete} />
 			);
 		}.bind(this));
 
@@ -48,7 +48,6 @@ class FavoriteTableComponent extends React.Component {
 						<th>Name</th>
 						<th>Director</th>
 						<th>Year</th>
-						<th>Your rating</th>
 						<th>Remove</th>
 					</tr>
 				</thead>
@@ -72,4 +71,4 @@ class FavoriteTableComponent extends React.Component {
 	}
 };
 
-export default FavoriteTableComponent;
+export default TableComponent;

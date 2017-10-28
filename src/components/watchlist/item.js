@@ -1,6 +1,6 @@
 import React from 'react';
 
-class WatchlistItem extends React.Component {
+class Item extends React.Component {
 	constructor() {
 		super();
 		this.handleDelete = this.handleDelete.bind(this);
@@ -24,4 +24,4 @@ class WatchlistItem extends React.Component {
 	}
 };
 
-export default WatchlistItem;
+export default Item;

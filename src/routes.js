@@ -7,7 +7,7 @@ import Search from './components/search';
 import Watchlist from './components/watchlist';
 import Favorite from './components/favorite';
 import Page404 from './components/page404';
-import Navbar from './components/navbar';
+import Navbar from './components/shared/navbar';
 
 class AppRoutes extends React.Component {
 	render() {
