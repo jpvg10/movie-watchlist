@@ -7,6 +7,8 @@ import Search from './components/search';
 import Watchlist from './components/watchlist';
 import Favorite from './components/favorite';
 import Page404 from './components/page404';
+import Login from './components/login';
+import Register from './components/register';
 import Navbar from './components/shared/navbar';
 
 class AppRoutes extends React.Component {
@@ -22,6 +24,8 @@ class AppRoutes extends React.Component {
 							<Route exact path="/search" component={Search} />
 							<Route exact path="/watchlist" component={Watchlist} />
 							<Route exact path="/favorite" component={Favorite} />
+							<Route exact path="/login" component={Login} />
+							<Route exact path="/register" component={Register} />
 							<Route component={Page404} />
 						</Switch>
 					</div>

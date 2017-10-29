@@ -24,6 +24,8 @@ class Navbar extends React.Component {
 							<Link to="/watchlist" className="navbar-item">Watchlist</Link>
 							<Link to="/favorite" className="navbar-item">Favorite</Link>
 							<Link to="/search" className="navbar-item">Search</Link>
+							<Link to="/login" className="navbar-item">Login</Link>
+							<Link to="/register" className="navbar-item">Register</Link>
 						</div>
 					</div>
 				</div>
