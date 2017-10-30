@@ -4,7 +4,7 @@ class UserForm extends React.Component {
 	// Custom methods
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSubmit(this.props.message);
+		this.props.onSubmit(this.refs.email.value, this.refs.password.value);
 	}
 
 	// Component methods
@@ -19,7 +19,7 @@ class UserForm extends React.Component {
 			 	<div className="field">
 					<label className="label">Email</label>
 					<div className="control has-icons-left">
-						<input className="input" type="text" placeholder="Email" />
+						<input className="input" type="text" placeholder="Email" ref="email" />
 						<span className="icon is-small is-left">
 							<i className="fa fa-envelope"></i>
 						</span>
@@ -28,7 +28,7 @@ class UserForm extends React.Component {
 				<div className="field">
 					<label className="label">Password</label>
 					<div className="control has-icons-left">
-						<input className="input" type="text" placeholder="Password" />
+						<input className="input" type="text" placeholder="Password" ref="password" />
 						<span className="icon is-small is-left">
 							<i className="fa fa-lock"></i>
 						</span>
