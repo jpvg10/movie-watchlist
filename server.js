@@ -2,23 +2,28 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-//mongoose.connect(configDB.url); 
+// Mongoose
+mongoose.connect('mongodb://localhost/movie_watchlist');
+mongoose.Promise = global.Promise;
 
+// Parsers
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({ 
-	secret: 'themoviewatchlistsecret',
-	resave: false,
-	saveUninitialized: false
-}));
+
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use('local-signup', require('./passport/local-signup'));
+passport.use('local-login', require('./passport/local-login'));
 
+// Static files
 app.use(express.static(__dirname + '/public'));
+
+// Middleware
+app.use('/api', require('./middleware/auth-check'));
 
 // Routes
 app.use('/api', require('./routes/api'));

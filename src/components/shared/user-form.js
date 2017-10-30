@@ -28,7 +28,7 @@ class UserForm extends React.Component {
 				<div className="field">
 					<label className="label">Password</label>
 					<div className="control has-icons-left">
-						<input className="input" type="text" placeholder="Password" ref="password" />
+						<input className="input" type="password" placeholder="Password" ref="password" />
 						<span className="icon is-small is-left">
 							<i className="fa fa-lock"></i>
 						</span>

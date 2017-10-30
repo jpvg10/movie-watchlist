@@ -4,6 +4,9 @@ import axios from 'axios';
 //Component requires
 import Item from './item';
 
+// Authentication module
+import Auth from '../../auth';
+
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
@@ -60,7 +63,10 @@ class TableComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		axios.get('/api/movies')
+		let headers = {
+			Authorization: 'Bearer ' + Auth.getToken()
+		};
+		axios.get('/api/movies', { headers: headers })
 			.then(function (response){
 				this.setState({
 					movies: response.data

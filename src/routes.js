@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 // Components
 import Home from './components/home';
@@ -10,6 +10,9 @@ import Page404 from './components/page404';
 import Login from './components/login';
 import Register from './components/register';
 import Navbar from './components/shared/navbar';
+
+// Authentication module
+import Auth from './auth';
 
 class AppRoutes extends React.Component {
 	render() {
@@ -26,6 +29,10 @@ class AppRoutes extends React.Component {
 							<Route exact path="/favorite" component={Favorite} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/register" component={Register} />
+							<Route exact path="/logout" render={() => {
+								Auth.deauthenticateUser(); 
+								return <Redirect to="/" />
+							}} />
 							<Route component={Page404} />
 						</Switch>
 					</div>

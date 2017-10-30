@@ -13,7 +13,13 @@ class Register extends React.Component {
 				password: password
 			})
 			.then(function(response) {
-				console.log(response);
+				if(response.status === 200){
+					console.log('Successful register');
+					sessionStorage.setItem('successMessage', true);
+					//this.context.router.replace('/login');
+				}else{
+					console.log('Error');
+				}
 			})
 			.catch(function(error) {
 				console.log(error);
