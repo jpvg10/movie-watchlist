@@ -10,7 +10,7 @@ import Auth from '../../auth';
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
-		var updatedMovies = this.state.movies.filter(function(val, index){
+		let updatedMovies = this.state.movies.filter(function(val, index){
 			return item !== val;
 		});
 		this.setState({
@@ -19,7 +19,7 @@ class TableComponent extends React.Component {
 	}
 
 	onAdd(item) {
-		var updatedMovies = this.state.movies;
+		let updatedMovies = this.state.movies;
 		updatedMovies.push(item);
 		this.setState({
 			movies: updatedMovies
@@ -37,7 +37,7 @@ class TableComponent extends React.Component {
 	}
 
 	render() {
-		var movies = this.state.movies;
+		let movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
 				<Item title={item} key={index} onDelete={this.onDelete} />
@@ -51,6 +51,7 @@ class TableComponent extends React.Component {
 						<th>Name</th>
 						<th>Director</th>
 						<th>Year</th>
+						<th>Move to favorites</th>
 						<th>Remove</th>
 					</tr>
 				</thead>

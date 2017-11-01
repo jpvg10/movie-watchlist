@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Authentication module
+import Auth from '../../auth';
+
 class Search extends React.Component {
 	componentWillMount() {
 		if(!Auth.isUserAuthenticated()){

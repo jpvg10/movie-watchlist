@@ -17,8 +17,11 @@ class Item extends React.Component {
 				<td></td>
 				<td></td>
 				<td>
-					<button className="button is-danger is-outlined" onClick={this.handleDelete}>X</button>
-				</td>				
+					<button className="button is-success is-outlined"><i className="fa fa-heart"></i></button>
+				</td>
+				<td>
+					<button className="button is-danger is-outlined" onClick={this.handleDelete}><i className="fa fa-times"></i></button>
+				</td>		
 			</tr>
 		);
 	}

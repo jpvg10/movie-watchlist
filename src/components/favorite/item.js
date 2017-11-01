@@ -23,7 +23,7 @@ class Item extends React.Component {
 					<ReactStars half={false} size={20}/>
 				</td>
 				<td>
-					<button className="button is-danger is-outlined" onClick={this.handleDelete}>X</button>
+					<button className="button is-danger is-outlined" onClick={this.handleDelete}><i className="fa fa-times"></i></button>
 				</td>				
 			</tr>
 		);
