@@ -32,14 +32,15 @@ class Login extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 
 		let storedMessage = localStorage.getItem('successMessage');
-		let successMessage = '';
+		let message = '';
 		if(storedMessage){
-			successMessage = storedMessage;
+			message = storedMessage;
 			localStorage.removeItem('successMessage');
 		}
 
 		this.state = {
-			successMessage: successMessage
+			message: message,
+			error: false
 		};
 	}
 
@@ -47,7 +48,7 @@ class Login extends React.Component {
 		return(
 			<div>
 				<h1 className="title">Login</h1>
-				<UserForm message="Login" onSubmit={this.onSubmit} successMessage={this.state.successMessage} />
+				<UserForm title="Login" onSubmit={this.onSubmit} message={this.state.message} error={this.state.false} />
 			</div>
 		);
 	}

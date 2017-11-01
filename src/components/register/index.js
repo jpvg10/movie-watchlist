@@ -15,12 +15,12 @@ class Register extends React.Component {
 			.then(function(response) {
 				if(response.status === 200){
 					console.log('Successful register');
-					sessionStorage.setItem('successMessage', true);
-					//this.context.router.replace('/login');
+					localStorage.setItem('successMessage', 'You have successfully signed up. You can now log in');
+					this.props.history.push('/login');
 				}else{
 					console.log('Error');
 				}
-			})
+			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
 			});
@@ -36,7 +36,7 @@ class Register extends React.Component {
 		return(
 			<div>
 				<h1 className="title">Register</h1>
-				<UserForm message="Register" onSubmit={this.onSubmit} />
+				<UserForm title="Register" onSubmit={this.onSubmit} />
 			</div>
 		);
 	}
