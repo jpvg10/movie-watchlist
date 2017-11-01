@@ -1,9 +1,30 @@
 import React from 'react';
 
+//Component requires
+import SearchForm from './search-form';
+import Item from './item';
+
 // Authentication module
 import Auth from '../../auth';
 
 class Search extends React.Component {
+	// Custom functions
+	onSearch(title) {
+		let results = [{ title: title }];
+		this.setState({
+			results: results
+		});
+	}
+
+	// Component functions
+	constructor() {
+		super();
+		this.state = {
+			results: []
+		};
+		this.onSearch = this.onSearch.bind(this);
+	}
+
 	componentWillMount() {
 		if(!Auth.isUserAuthenticated()){
 			this.props.history.push('/');
@@ -11,20 +32,24 @@ class Search extends React.Component {
 	}
 	
 	render() {
+		let results = this.state.results;
+		results = results.map(function(item, index){
+			return(
+				<Item key={index} title={item.title} director={item.director} year={item.year} />
+			);
+		}.bind(this));
+
 		return(
 			<div>
-			 	<h1 className="title">Search for movies</h1>
+				<h1 className="title">Search for movies</h1>
+				
+				<SearchForm onSearch={this.onSearch} />
 
-			 	<form>
-				 	<div className="field has-addons">
-						<div className="control is-expanded">
-							<input className="input" type="text" placeholder="Name of the movie" />
-						</div>
-						<div className="control">
-							<a className="button is-info">Search</a>
-						</div>
-					</div>
-			 	</form>
+				<div className="section">
+					<ul>
+						{results}
+					</ul>
+				</div>
 			</div>
 		);
 	}
