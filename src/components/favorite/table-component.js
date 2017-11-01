@@ -10,12 +10,19 @@ import Auth from '../../auth';
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
-		let updatedMovies = this.state.movies.filter(function(val, index){
-			return item !== val;
-		});
-		this.setState({
-			movies: updatedMovies
-		});
+		let options = { 
+			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
+			data: { title: item } 
+		};
+		axios.delete('/api/favorite', options)
+			.then(function (response){
+				this.setState({
+					movies: response.data
+				});
+			}.bind(this))
+			.catch(function (error){
+				console.log(error);
+			});
 	}
 
 	onAdd(item) {
@@ -63,10 +70,10 @@ class TableComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		let headers = {
-			Authorization: 'Bearer ' + Auth.getToken()
+		let options = {
+			headers: { Authorization: 'Bearer ' + Auth.getToken() }
 		};
-		axios.get('/api/movies', { headers: headers })
+		axios.get('/api/favorite', options)
 			.then(function (response){
 				this.setState({
 					movies: response.data

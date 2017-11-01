@@ -36,14 +36,10 @@ module.exports = new PassportLocalStrategy(
 					return done(error);
 				}
 
-				let payload = {
-					sub: user._id
-				};
+				let payload = { sub: user._id };
 				let token = jwt.sign(payload, 'themoviewatchlistsecret');
 
-				let data = {
-					email: user.email
-				};
+				let data = { email: user.email };
 
 				return done(null, token, data);
 			});

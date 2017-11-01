@@ -19,6 +19,7 @@ module.exports = function(req, res, next){
 			if(err || !user) {
 				return res.status(401).end();
 			}else{
+				req.userId = userId;
 				return next();
 			}			
 		});
