@@ -1,6 +1,12 @@
 import React from 'react';
 
 class Search extends React.Component {
+	componentWillMount() {
+		if(!Auth.isUserAuthenticated()){
+			this.props.history.push('/');
+		}
+	}
+	
 	render() {
 		return(
 			<div>
