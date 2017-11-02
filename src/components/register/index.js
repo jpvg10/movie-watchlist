@@ -7,11 +7,15 @@ import UserForm from '../shared/user-form';
 class Register extends React.Component {
 	// Custom methods
 	onSubmit(email, password) {
-		axios
-			.post('/auth/register', {
+		let options = {
+			method: 'post',
+			url: '/auth/register',
+			data: { 
 				email: email,
-				password: password
-			})
+				password: password 
+			} 
+		};
+		axios.request(options)
 			.then(function(response) {
 				if(response.status === 200){
 					console.log('Successful register');

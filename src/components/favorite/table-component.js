@@ -11,10 +11,12 @@ class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
 		let options = { 
+			method: 'delete',
+			url: '/api/favorite',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { title: item } 
+			data: { name: item } 
 		};
-		axios.delete('/api/favorite', options)
+		axios.request(options)
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -25,14 +27,6 @@ class TableComponent extends React.Component {
 			});
 	}
 
-	onAdd(item) {
-		let updatedMovies = this.state.movies;
-		updatedMovies.push(item);
-		this.setState({
-			movies: updatedMovies
-		});
-	}
-
 	// Component functions
 	constructor() {
 		super();
@@ -40,14 +34,13 @@ class TableComponent extends React.Component {
 			movies: []
 		};
 		this.onDelete = this.onDelete.bind(this);
-		this.onAdd = this.onAdd.bind(this);
 	}
 
 	render() {
 		let movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<Item title={item} key={index} onDelete={this.onDelete} />
+				<Item name={item.name} key={index} onDelete={this.onDelete} />
 			);
 		}.bind(this));
 
@@ -71,9 +64,11 @@ class TableComponent extends React.Component {
 
 	componentDidMount() {
 		let options = {
+			method: 'get',
+			url: '/api/favorite',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }
 		};
-		axios.get('/api/favorite', options)
+		axios.request(options)
 			.then(function (response){
 				this.setState({
 					movies: response.data

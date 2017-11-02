@@ -4,9 +4,29 @@ const bcrypt = require('bcrypt');
 const UserSchema = new mongoose.Schema({
 	email: {
 		type: String,
+		required: true,
 		index: { unique: true }
 	},
-	password: String
+	password: {
+		type: String,
+		required: true
+	},
+	watchlist: [{
+		name: {
+			type: String,
+			required: false
+		}
+	}],
+	favorites: [{
+		name: {
+			type: String,
+			required: false
+		},
+		stars: {
+			type: Number,
+			required: false
+		}
+	}]
 });
 
 UserSchema.methods.comparePassword = function(password, callback) {

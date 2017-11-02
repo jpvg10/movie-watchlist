@@ -10,13 +10,13 @@ class Item extends React.Component {
 	}
 
 	handleDelete(){
-		this.props.onDelete(this.props.title);
+		this.props.onDelete(this.props.name);
 	}
 
 	render() {
 		return(
 			<tr>				
-				<td>{this.props.title}</td>
+				<td>{this.props.name}</td>
 				<td></td>
 				<td></td>
 				<td>

@@ -11,10 +11,12 @@ class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
 		let options = { 
+			method: 'delete',
+			url: '/api/watchlist',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { title: item } 
+			data: { name: item } 
 		};
-		axios.delete('/api/watchlist', options)
+		axios.request(options)
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -25,12 +27,36 @@ class TableComponent extends React.Component {
 			});
 	}
 
-	onAdd(item) {
-		let updatedMovies = this.state.movies;
-		updatedMovies.push(item);
-		this.setState({
-			movies: updatedMovies
-		});
+	onMove(item) {
+		let optionsDelete = { 
+			method: 'delete',
+			url: '/api/watchlist',
+			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
+			data: { name: item } 
+		};
+
+		let optionsPost = {
+			method: 'post',
+			url: '/api/favorite',
+			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
+			data: { name: item } 
+		}
+		
+		axios.request(optionsDelete)
+			.then(function(responseDelete){
+				axios.request(optionsPost)
+					.then(function(responsePost){
+						this.setState({
+							movies: responseDelete.data
+						});
+					}.bind(this))
+					.catch(function(error){
+						console.log(error);
+					});
+			}.bind(this))
+			.catch(function(error){
+				console.log(error);
+			});
 	}
 
 	// Component functions
@@ -40,14 +66,14 @@ class TableComponent extends React.Component {
 			movies: []
 		};
 		this.onDelete = this.onDelete.bind(this);
-		this.onAdd = this.onAdd.bind(this);
+		this.onMove = this.onMove.bind(this);
 	}
 
 	render() {
 		let movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<Item title={item} key={index} onDelete={this.onDelete} />
+				<Item name={item.name} key={index} onDelete={this.onDelete} onMove={this.onMove} />
 			);
 		}.bind(this));
 
@@ -71,9 +97,11 @@ class TableComponent extends React.Component {
 
 	componentDidMount() {
 		let options = {
+			method: 'get',
+			url: '/api/watchlist',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }
 		};
-		axios.get('/api/watchlist', options)
+		axios.request(options)
 			.then(function (response){
 				this.setState({
 					movies: response.data

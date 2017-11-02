@@ -1,26 +1,56 @@
-let movies = ['One Flew Over The Cuckoo\'s Nest', 'Inglourious Basterds', 'Interstellar'];
+const userModel = require('../models/user-model');
 
 module.exports = {
 	getFavorites: function(userId){
 		return new Promise(function(resolve, reject){
-			resolve(movies);
+			userModel.findById(userId)
+				.then(function(user){
+					resolve(user.favorites);
+				})
+				.catch(function(error){
+					reject(error);
+				});
 		});		
 	},
-	addFavorite: function(userId, title){
+	addFavorite: function(userId, movieName, stars){
 		return new Promise(function(resolve, reject){
-			movies.push(title);
-			resolve(movies);
+			userModel.findById(userId)
+				.then(function(user){					
+					user.favorites.push({ name: movieName });					
+					user.save()
+						.then(function(updatedUser){
+							resolve(updatedUser.favorites);
+						})
+						.catch(function(error){
+							reject(error);
+						});
+				})
+				.catch(function(error){
+					reject(error);
+				});
 		});
 	},
-	editFavorite: function(userId, title, stars){
+	editFavorite: function(userId, movieName, stars){
 
 	},
-	removeFavorite: function(userId, title){
+	removeFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			movies = movies.filter(function(item){
-				return item !== title;
-			});
-			resolve(movies);
+			userModel.findById(userId)
+				.then(function(user){
+					user.favorites = user.favorites.filter(function(movie){
+						return movie.name !== movieName;
+					});
+					user.save()
+						.then(function(updatedUser){
+							resolve(updatedUser.favorites);
+						})
+						.catch(function(error){
+							reject(error);
+						});
+				})
+				.catch(function(error){
+					reject(error);
+				});
 		});
 	}
 };

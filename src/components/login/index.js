@@ -10,11 +10,15 @@ import Auth from '../../auth';
 class Login extends React.Component {
 	// Custom methods
 	onSubmit(email, password) {
-		axios
-			.post('/auth/login', {
+		let options = {
+			method: 'post',
+			url: '/auth/login',
+			data: { 
 				email: email,
-				password: password
-			})
+				password: password 
+			} 
+		};
+		axios.request(options)
 			.then(function(response) {
 				if(response.status === 200){
 					Auth.authenticateUser(response.data.token);

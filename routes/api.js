@@ -15,7 +15,7 @@ router.get('/watchlist', function(req, res){
 });
 
 router.post('/watchlist', function(req, res){
-	watchlistController.addToWatchlist(req.userId, req.body.title)
+	watchlistController.addToWatchlist(req.userId, req.body.name)
 		.then(function(data){
 			res.send(data);
 		})
@@ -25,7 +25,7 @@ router.post('/watchlist', function(req, res){
 });
 
 router.delete('/watchlist', function(req, res){
-	watchlistController.removeFromWatchlist(req.userId, req.body.title)
+	watchlistController.removeFromWatchlist(req.userId, req.body.name)
 		.then(function(data){
 			res.send(data);
 		})
@@ -45,7 +45,7 @@ router.get('/favorite', function(req, res){
 });
 
 router.post('/favorite', function(req, res){
-	favoriteController.addFavorite(req.userId, req.body.title, req.body.stars)
+	favoriteController.addFavorite(req.userId, req.body.name, req.body.stars)
 		.then(function(data){
 			res.send(data);
 		})
@@ -55,7 +55,7 @@ router.post('/favorite', function(req, res){
 });
 
 router.put('/favorite', function(req, res){
-	favoriteController.editFavorite(req.userId, req.body.title, req.body.stars)
+	favoriteController.editFavorite(req.userId, req.body.name, req.body.stars)
 		.then(function(data){
 			res.send(data);
 		})
@@ -65,7 +65,7 @@ router.put('/favorite', function(req, res){
 });
 
 router.delete('/favorite', function(req, res){
-	favoriteController.removeFavorite(req.userId, req.body.title)
+	favoriteController.removeFavorite(req.userId, req.body.name)
 		.then(function(data){
 			res.send(data);
 		})

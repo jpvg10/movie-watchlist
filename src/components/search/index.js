@@ -9,8 +9,8 @@ import Auth from '../../auth';
 
 class Search extends React.Component {
 	// Custom functions
-	onSearch(title) {
-		let results = [{ title: title }];
+	onSearch(name) {
+		let results = [{ name: name }];
 		this.setState({
 			results: results
 		});
@@ -35,7 +35,7 @@ class Search extends React.Component {
 		let results = this.state.results;
 		results = results.map(function(item, index){
 			return(
-				<Item key={index} title={item.title} director={item.director} year={item.year} />
+				<Item key={index} name={item.name} director={item.director} year={item.year} />
 			);
 		}.bind(this));
 
