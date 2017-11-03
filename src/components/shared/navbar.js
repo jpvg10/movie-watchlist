@@ -5,6 +5,22 @@ import { Link } from 'react-router-dom';
 import Auth from '../../auth';
 
 class Navbar extends React.Component {
+	// Custom methods
+	toggleBurger() {
+		this.setState({
+			burgerActive: !this.state.burgerActive
+		});
+	}
+
+	// Component methods
+	constructor() {
+		super();
+		this.state = {
+			burgerActive: false
+		};
+		this.toggleBurger = this.toggleBurger.bind(this);
+	}
+
 	render() {
 		return(
 			<nav className="navbar is-warning">
@@ -15,14 +31,14 @@ class Navbar extends React.Component {
 							<span className="title is-4">Movie Watchlist</span>
 						</Link>
 
-						<button className="button navbar-burger">
+						<button className={"button navbar-burger " + (this.state.burgerActive ? "is-active" : null)} onClick={this.toggleBurger}>
 							<span></span>
 							<span></span>
 							<span></span>
 						</button>
 					</div>
 
-					<div className="navbar-menu">
+					<div className={"navbar-menu " + (this.state.burgerActive ? "is-active" : null)}>
 						{Auth.isUserAuthenticated() ? (
 							<div className="navbar-end">
 								<Link to="/watchlist" className="navbar-item">Watchlist</Link>
