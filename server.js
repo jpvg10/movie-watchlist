@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+// Local environment variables
+if(process.env.NODE_ENV !== 'production'){
+	require('dotenv').load();
+}
+
 // Mongoose
-mongoose.connect('mongodb://localhost/movie_watchlist');
+mongoose.connect(`mongodb://${process.env.dbuser}:${process.env.dbpassword}@${process.env.dbhost}:${process.env.dbport}/${process.env.database}`);
 mongoose.Promise = global.Promise;
 
 // Parsers
-app.use(cookieParser());
 app.use(bodyParser.json());
 
 // Passport
@@ -36,6 +39,8 @@ app.use(function(err, req, res, next) {
 	res.status(500).send({"Error" : err.message});
 });
 
-app.listen(3000, function(){
-	console.log('Server running on port 3000');
+let port = process.env.PORT || 3000;
+
+app.listen(port, function(){
+	console.log(`Server running on port ${port}`);
 });

@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack -p && node server",
+    "postinstall": "webpack -p",
+    "start": "node server",
     "start-dev": "concurrently \"webpack -w\" \"nodemon server\""
   },
   "author": "",
@@ -18,7 +18,6 @@
     "babel-preset-react": "^6.24.1",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.12.4",
@@ -32,6 +31,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
+    "dotenv": "^4.0.0",
     "nodemon": "^1.12.1"
   }
 }
