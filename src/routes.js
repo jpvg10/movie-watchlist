@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/home';
 import Search from './components/search';
 import Watchlist from './components/watchlist';
-import Favorite from './components/favorite';
+import Favorites from './components/favorites';
 import Page404 from './components/page404';
 import Login from './components/login';
 import Signup from './components/signup';
@@ -26,7 +26,7 @@ class AppRoutes extends React.Component {
 							<Route exact path="/" component={Home} />
 							<Route exact path="/search" component={Search} />
 							<Route exact path="/watchlist" component={Watchlist} />
-							<Route exact path="/favorite" component={Favorite} />
+							<Route exact path="/favorites" component={Favorites} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/signup" component={Signup} />
 							<Route exact path="/logout" render={() => {

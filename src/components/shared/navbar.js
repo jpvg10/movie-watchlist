@@ -26,7 +26,7 @@ class Navbar extends React.Component {
 						{Auth.isUserAuthenticated() ? (
 							<div className="navbar-end">
 								<Link to="/watchlist" className="navbar-item">Watchlist</Link>
-								<Link to="/favorite" className="navbar-item">Favorite</Link>
+								<Link to="/favorites" className="navbar-item">Favorites</Link>
 								<Link to="/search" className="navbar-item">Search</Link>
 								<Link to="/logout" className="navbar-item">Log out</Link>
 							</div>

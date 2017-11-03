@@ -25,7 +25,7 @@ class Item extends React.Component {
 	addToFavorites() {
 		let options = { 
 			method: 'post',
-			url: '/api/favorite',
+			url: '/api/favorites',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
 			data: { name: this.props.name } 
 		};

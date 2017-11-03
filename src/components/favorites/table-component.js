@@ -12,7 +12,7 @@ class TableComponent extends React.Component {
 	onDelete(item) {
 		let options = { 
 			method: 'delete',
-			url: '/api/favorite',
+			url: '/api/favorites',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
 			data: { name: item } 
 		};
@@ -65,7 +65,7 @@ class TableComponent extends React.Component {
 	componentDidMount() {
 		let options = {
 			method: 'get',
-			url: '/api/favorite',
+			url: '/api/favorites',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }
 		};
 		axios.request(options)

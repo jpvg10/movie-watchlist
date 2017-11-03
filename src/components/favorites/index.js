@@ -6,7 +6,7 @@ import TableComponent from './table-component';
 // Authentication module
 import Auth from '../../auth';
 
-class Favorite extends React.Component {
+class Favorites extends React.Component {
 	componentWillMount() {
 		if(!Auth.isUserAuthenticated()){
 			this.props.history.push('/');
@@ -23,4 +23,4 @@ class Favorite extends React.Component {
 	}
 };
 
-export default Favorite;
+export default Favorites;

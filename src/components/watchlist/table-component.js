@@ -37,7 +37,7 @@ class TableComponent extends React.Component {
 
 		let optionsPost = {
 			method: 'post',
-			url: '/api/favorite',
+			url: '/api/favorites',
 			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
 			data: { name: item } 
 		}

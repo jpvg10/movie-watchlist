@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const watchlistController = require('../controllers/watchlist-controller');
-const favoriteController = require('../controllers/favorite-controller');
+const favoritesController = require('../controllers/favorites-controller');
 
 router.get('/watchlist', function(req, res){
 	watchlistController.getWatchlist(req.userId)
@@ -34,8 +34,8 @@ router.delete('/watchlist', function(req, res){
 		});
 });
 
-router.get('/favorite', function(req, res){
-	favoriteController.getFavorites(req.userId)
+router.get('/favorites', function(req, res){
+	favoritesController.getFavorites(req.userId)
 		.then(function(data){
 			res.send(data);
 		})
@@ -44,8 +44,8 @@ router.get('/favorite', function(req, res){
 		});
 });
 
-router.post('/favorite', function(req, res){
-	favoriteController.addFavorite(req.userId, req.body.name, req.body.stars)
+router.post('/favorites', function(req, res){
+	favoritesController.addFavorite(req.userId, req.body.name, req.body.stars)
 		.then(function(data){
 			res.send(data);
 		})
@@ -54,8 +54,8 @@ router.post('/favorite', function(req, res){
 		});
 });
 
-router.put('/favorite', function(req, res){
-	favoriteController.editFavorite(req.userId, req.body.name, req.body.stars)
+router.put('/favorites', function(req, res){
+	favoritesController.editFavorite(req.userId, req.body.name, req.body.stars)
 		.then(function(data){
 			res.send(data);
 		})
@@ -64,8 +64,8 @@ router.put('/favorite', function(req, res){
 		});
 });
 
-router.delete('/favorite', function(req, res){
-	favoriteController.removeFavorite(req.userId, req.body.name)
+router.delete('/favorites', function(req, res){
+	favoritesController.removeFavorite(req.userId, req.body.name)
 		.then(function(data){
 			res.send(data);
 		})
