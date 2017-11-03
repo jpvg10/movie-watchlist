@@ -16,31 +16,34 @@ class Register extends React.Component {
 			} 
 		};
 		axios.request(options)
-			.then(function(response) {
-				if(response.status === 200){
-					console.log('Successful register');
-					localStorage.setItem('successMessage', 'You have successfully signed up. You can now log in');
-					this.props.history.push('/login');
-				}else{
-					console.log('Error');
-				}
+			.then(function(response){				
+				localStorage.setItem('successMessage', 'You have successfully signed up. You can now log in');
+				this.props.history.push('/login');				
 			}.bind(this))
 			.catch(function(error) {
-				console.log(error);
-			});
+				this.setState({
+					message: error.response.data.message,
+					success: error.response.data.success
+				});
+			}.bind(this));
 	}
 
 	// Component methods
 	constructor() {
 		super();
 		this.onSubmit = this.onSubmit.bind(this);
+
+		this.state = {
+			message: '',
+			success: false
+		};
 	}
 
 	render() {
 		return(
 			<div>
 				<h1 className="title">Sign up</h1>
-				<UserForm title="Sign up" onSubmit={this.onSubmit} />
+				<UserForm title="Sign up" onSubmit={this.onSubmit} message={this.state.message} error={this.state.success} />
 			</div>
 		);
 	}

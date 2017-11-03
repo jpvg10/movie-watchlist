@@ -19,15 +19,16 @@ class Login extends React.Component {
 			} 
 		};
 		axios.request(options)
-			.then(function(response) {
-				if(response.status === 200){
-					Auth.authenticateUser(response.data.token);
-					this.props.history.push('/');
-				}
+			.then(function(response){				
+				Auth.authenticateUser(response.data.token);
+				this.props.history.push('/');				
 			}.bind(this))
-			.catch(function(error) {
-				console.log(error);
-			});
+			.catch(function(error){
+				this.setState({
+					message: error.response.data.message,
+					success: error.response.data.success
+				});
+			}.bind(this));
 	}
 
 	// Component methods
@@ -44,7 +45,7 @@ class Login extends React.Component {
 
 		this.state = {
 			message: message,
-			error: false
+			success: true
 		};
 	}
 
@@ -52,7 +53,7 @@ class Login extends React.Component {
 		return(
 			<div>
 				<h1 className="title">Log in</h1>
-				<UserForm title="Log in" onSubmit={this.onSubmit} message={this.state.message} error={this.state.false} />
+				<UserForm title="Log in" onSubmit={this.onSubmit} message={this.state.message} success={this.state.success} />
 			</div>
 		);
 	}

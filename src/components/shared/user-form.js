@@ -17,7 +17,7 @@ class UserForm extends React.Component {
 		let notification;
 		if(this.props.message){
 			notification = 
-			<div className={"notification " + (this.props.error ? "is-danger" : "is-success")}>
+			<div className={"notification " + (this.props.success ? "is-success" : "is-danger")}>
 				<span>{this.props.message}</span>					
 			</div>
 		}

@@ -20,8 +20,7 @@ router.post('/signup', function(req, res, next){
 				}				
 			}else{
 				res.json({
-					success: true,
-					message: 'You have successfully signed up!',
+					success: true
 				});
 			}			
 		})(req, res, next);		
@@ -51,9 +50,7 @@ router.post('/login', function(req, res, next){
 			}else{
 				res.json({
 					success: true,
-					message: 'You have successfully logged in!',
-					token: token,
-					user: userData
+					token: token
 				});
 			}			
 		})(req, res, next);		
