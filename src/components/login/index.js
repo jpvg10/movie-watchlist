@@ -51,8 +51,8 @@ class Login extends React.Component {
 	render() {
 		return(
 			<div>
-				<h1 className="title">Login</h1>
-				<UserForm title="Login" onSubmit={this.onSubmit} message={this.state.message} error={this.state.false} />
+				<h1 className="title">Log in</h1>
+				<UserForm title="Log in" onSubmit={this.onSubmit} message={this.state.message} error={this.state.false} />
 			</div>
 		);
 	}

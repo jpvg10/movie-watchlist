@@ -8,7 +8,7 @@ import Watchlist from './components/watchlist';
 import Favorite from './components/favorite';
 import Page404 from './components/page404';
 import Login from './components/login';
-import Register from './components/register';
+import Signup from './components/signup';
 import Navbar from './components/shared/navbar';
 
 // Authentication module
@@ -28,7 +28,7 @@ class AppRoutes extends React.Component {
 							<Route exact path="/watchlist" component={Watchlist} />
 							<Route exact path="/favorite" component={Favorite} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/register" component={Register} />
+							<Route exact path="/signup" component={Signup} />
 							<Route exact path="/logout" render={() => {
 								Auth.deauthenticateUser(); 
 								return <Redirect to="/" />

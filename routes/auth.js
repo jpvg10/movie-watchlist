@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-router.post('/register', function(req, res, next){
+router.post('/signup', function(req, res, next){
 	if(req.body.email && req.body.password){
 		return passport.authenticate('local-signup', function(err){
 			if(err){

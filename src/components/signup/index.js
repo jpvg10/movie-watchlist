@@ -9,7 +9,7 @@ class Register extends React.Component {
 	onSubmit(email, password) {
 		let options = {
 			method: 'post',
-			url: '/auth/register',
+			url: '/auth/signup',
 			data: { 
 				email: email,
 				password: password 
@@ -39,8 +39,8 @@ class Register extends React.Component {
 	render() {
 		return(
 			<div>
-				<h1 className="title">Register</h1>
-				<UserForm title="Register" onSubmit={this.onSubmit} />
+				<h1 className="title">Sign up</h1>
+				<UserForm title="Sign up" onSubmit={this.onSubmit} />
 			</div>
 		);
 	}
