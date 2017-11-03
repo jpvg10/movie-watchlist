@@ -14,13 +14,13 @@ const UserSchema = new mongoose.Schema({
 	watchlist: [{
 		name: {
 			type: String,
-			required: false
+			required: true
 		}
 	}],
 	favorites: [{
 		name: {
 			type: String,
-			required: false
+			required: true
 		},
 		stars: {
 			type: Number,

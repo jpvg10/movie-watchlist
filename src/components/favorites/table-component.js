@@ -40,7 +40,7 @@ class TableComponent extends React.Component {
 		let movies = this.state.movies;
 		movies = movies.map(function(item, index){
 			return(
-				<Item name={item.name} key={index} onDelete={this.onDelete} />
+				<Item name={item.name} stars={item.stars} key={index} onDelete={this.onDelete} />
 			);
 		}.bind(this));
 

@@ -12,7 +12,7 @@ module.exports = {
 				});
 		});		
 	},
-	addFavorite: function(userId, movieName, stars){
+	addFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
 			userModel.findById(userId)
 				.then(function(user){					
@@ -31,7 +31,30 @@ module.exports = {
 		});
 	},
 	editFavorite: function(userId, movieName, stars){
-
+		return new Promise(function(resolve, reject){
+			userModel.findById(userId)
+				.then(function(user){					
+					let newFavorites = user.favorites;
+					newFavorites.forEach(function(item){
+						if(item.name === movieName){
+							item.stars = stars;
+							return;
+						}
+					});
+					console.log(newFavorites);
+					user.favorites = newFavorites;
+					user.save()
+						.then(function(updatedUser){
+							resolve(updatedUser.favorites);
+						})
+						.catch(function(error){
+							reject(error);
+						});
+				})
+				.catch(function(error){
+					reject(error);
+				});
+		});
 	},
 	removeFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){

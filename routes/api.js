@@ -45,7 +45,7 @@ router.get('/favorites', function(req, res){
 });
 
 router.post('/favorites', function(req, res){
-	favoritesController.addFavorite(req.userId, req.body.name, req.body.stars)
+	favoritesController.addFavorite(req.userId, req.body.name)
 		.then(function(data){
 			res.send(data);
 		})
