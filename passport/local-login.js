@@ -25,9 +25,9 @@ module.exports = new PassportLocalStrategy(
 				return done(error);
 			}
 
-			return user.comparePassword(userData.password, function(passwordErr, isMatch){
-				if(passwordErr){
-					return done(passwordErr);
+			return user.comparePassword(userData.password, function(err, isMatch){
+				if(err){
+					return done(err);
 				}
 
 				if(!isMatch){

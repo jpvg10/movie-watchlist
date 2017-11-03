@@ -50,7 +50,8 @@ router.post('/login', function(req, res, next){
 			}else{
 				res.json({
 					success: true,
-					token: token
+					token: token,
+					user: userData
 				});
 			}			
 		})(req, res, next);		

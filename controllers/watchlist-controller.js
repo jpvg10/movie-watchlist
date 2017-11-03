@@ -1,11 +1,11 @@
-const userModel = require('../models/user-model');
+const listModel = require('../models/list-model');
 
 module.exports = {
 	getWatchlist: function(userId){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){
-					resolve(user.watchlist);
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					resolve(list.watchlist);
 				})
 				.catch(function(error){
 					reject(error);
@@ -14,12 +14,12 @@ module.exports = {
 	},
 	addToWatchlist: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){					
-					user.watchlist.push({ name: movieName });					
-					user.save()
-						.then(function(updatedUser){
-							resolve(updatedUser.watchlist);
+			listModel.findOne({ _user: userId })
+				.then(function(list){					
+					list.watchlist.push({ name: movieName });
+					list.save()
+						.then(function(updatedList){
+							resolve(updatedList.watchlist);
 						})
 						.catch(function(error){
 							reject(error);
@@ -32,14 +32,14 @@ module.exports = {
 	},
 	removeFromWatchlist: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){
-					user.watchlist = user.watchlist.filter(function(movie){
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					list.watchlist = list.watchlist.filter(function(movie){
 						return movie.name !== movieName;
 					});
-					user.save()
-						.then(function(updatedUser){
-							resolve(updatedUser.watchlist);
+					list.save()
+						.then(function(updatedList){
+							resolve(updatedList.watchlist);
 						})
 						.catch(function(error){
 							reject(error);

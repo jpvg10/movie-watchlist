@@ -10,23 +10,7 @@ const UserSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true
-	},
-	watchlist: [{
-		name: {
-			type: String,
-			required: true
-		}
-	}],
-	favorites: [{
-		name: {
-			type: String,
-			required: true
-		},
-		stars: {
-			type: Number,
-			required: false
-		}
-	}]
+	}
 });
 
 UserSchema.methods.comparePassword = function(password, callback) {
@@ -40,7 +24,6 @@ UserSchema.pre('save', function(next){
 		if(saltError){ 
 			return next(saltError); 
 		}
-
 
 		return bcrypt.hash(user.password, salt, function(hashError, hash){
 			if(hashError){

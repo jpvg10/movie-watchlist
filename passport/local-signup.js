@@ -1,4 +1,5 @@
 const UserModel = require('../models/user-model');
+const ListModel = require('../models/list-model');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
 module.exports = new PassportLocalStrategy(
@@ -14,12 +15,19 @@ module.exports = new PassportLocalStrategy(
 		};
 
 		let newUser = UserModel(userData);
-		newUser.save(function(err){
+		newUser.save(function(err, user){
 			if(err){
 				return done(err);
 			}
 
-			return done(null);
+			let newList = ListModel({ _user: user.id });
+			newList.save(function(err){
+				if(err){
+					return done(err);
+				}
+
+				return done(null);
+			});			
 		});
 	}
 );

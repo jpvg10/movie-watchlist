@@ -1,11 +1,11 @@
-const userModel = require('../models/user-model');
+const listModel = require('../models/list-model');
 
 module.exports = {
 	getFavorites: function(userId){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){
-					resolve(user.favorites);
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					resolve(list.favorites);
 				})
 				.catch(function(error){
 					reject(error);
@@ -14,12 +14,12 @@ module.exports = {
 	},
 	addFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){					
-					user.favorites.push({ name: movieName });					
-					user.save()
-						.then(function(updatedUser){
-							resolve(updatedUser.favorites);
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					list.favorites.push({ name: movieName });
+					list.save()
+						.then(function(updatedList){
+							resolve(updatedList.favorites);
 						})
 						.catch(function(error){
 							reject(error);
@@ -32,20 +32,19 @@ module.exports = {
 	},
 	editFavorite: function(userId, movieName, stars){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){					
-					let newFavorites = user.favorites;
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					let newFavorites = list.favorites;
 					newFavorites.forEach(function(item){
 						if(item.name === movieName){
 							item.stars = stars;
 							return;
 						}
 					});
-					console.log(newFavorites);
-					user.favorites = newFavorites;
-					user.save()
-						.then(function(updatedUser){
-							resolve(updatedUser.favorites);
+					list.favorites = newFavorites;
+					list.save()
+						.then(function(updatedList){
+							resolve(updatedList.favorites);
 						})
 						.catch(function(error){
 							reject(error);
@@ -58,14 +57,14 @@ module.exports = {
 	},
 	removeFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			userModel.findById(userId)
-				.then(function(user){
-					user.favorites = user.favorites.filter(function(movie){
+			listModel.findOne({ _user: userId })
+				.then(function(list){
+					list.favorites = list.favorites.filter(function(movie){
 						return movie.name !== movieName;
 					});
-					user.save()
-						.then(function(updatedUser){
-							resolve(updatedUser.favorites);
+					list.save()
+						.then(function(updatedList){
+							resolve(updatedList.favorites);
 						})
 						.catch(function(error){
 							reject(error);
