@@ -44,7 +44,14 @@ class Navbar extends React.Component {
 								<Link to="/watchlist" className="navbar-item">Watchlist</Link>
 								<Link to="/favorites" className="navbar-item">Favorites</Link>
 								<Link to="/search" className="navbar-item">Search</Link>
-								<Link to="/logout" className="navbar-item">Log out</Link>
+								<div className="navbar-item has-dropdown is-hoverable">
+									<span className="navbar-link">{Auth.getEmail()}</span>
+									<div className="navbar-dropdown is-right">
+										<span className="navbar-item">
+											<Link to="/logout" className="navbar-item">Log out</Link>
+										</span>								
+									</div>
+								</div>
 							</div>
 						):(
 							<div className="navbar-end">

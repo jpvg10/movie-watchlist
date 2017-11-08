@@ -20,7 +20,7 @@ class Login extends React.Component {
 		};
 		axios.request(options)
 			.then(function(response){				
-				Auth.authenticateUser(response.data.token);
+				Auth.authenticateUser(response.data.token, response.data.user.email);
 				this.props.history.push('/');				
 			}.bind(this))
 			.catch(function(error){

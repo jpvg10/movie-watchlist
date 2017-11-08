@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-//Component requires
+// Component requires
 import Item from './item';
 import { toast } from 'react-toastify';
 
