@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+// Component requires
+import { toast } from 'react-toastify';
+
 // Authentication module
 import Auth from '../../auth';
 
@@ -15,10 +18,10 @@ class Item extends React.Component {
 		};
 		axios.request(options)
 			.then(function(response){
-				console.log('Added');
+				toast.success('Added to the watchlist!');
 			})
 			.catch(function(error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			});
 	}
 
@@ -31,10 +34,10 @@ class Item extends React.Component {
 		};
 		axios.request(options)
 			.then(function(response){
-				console.log('Added');
+				toast.success('Added to favorites!');
 			})
 			.catch(function(error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			});
 	}
 

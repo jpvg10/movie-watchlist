@@ -3,6 +3,7 @@ import axios from 'axios';
 
 //Component requires
 import Item from './item';
+import { toast } from 'react-toastify';
 
 // Authentication module
 import Auth from '../../auth';
@@ -49,13 +50,14 @@ class TableComponent extends React.Component {
 						this.setState({
 							movies: responseDelete.data
 						});
+						toast.success('Moved to favorites!');
 					}.bind(this))
 					.catch(function(error){
-						console.log(error);
+						toast.error('Oops! Something happened. Try again later.');
 					});
 			}.bind(this))
 			.catch(function(error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			});
 	}
 
