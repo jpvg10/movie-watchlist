@@ -41,10 +41,19 @@ class Search extends React.Component {
 
 		return(
 			<div>
-				<h1 className="title">Search for movies</h1>
-				
+				<article className="media">
+					<figure className="media-left">
+						<p className="image is-64x64">
+							<img src="/img/video-camera.png" />
+						</p>
+					</figure>
+					<div className="media-content">
+						<h1 className="title">Search for movies</h1>
+					</div>
+				</article>
+								
 				<SearchForm onSearch={this.onSearch} />
-
+				
 				<div className="section">
 					<ul>
 						{results}

@@ -16,7 +16,17 @@ class Watchlist extends React.Component {
 	render() {
 		return(
 			<div>
-			 	<h1 className="title">These are the movies you have yet to watch:</h1>
+				<article className="media">
+					<figure className="media-left">
+						<p className="image is-64x64">
+							<img src="/img/seat.png" />
+						</p>
+					</figure>
+					<div className="media-content">
+						<h1 className="title">These are the movies you have yet to watch:</h1>
+					</div>
+				</article>
+			 	
 			 	<TableComponent />
 			</div>
 		);

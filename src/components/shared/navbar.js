@@ -27,7 +27,7 @@ class Navbar extends React.Component {
 				<div className="container">
 					<div className="navbar-brand">
 						<Link className="navbar-item" to="/">
-							<img src="/img/clapboard.png" />
+							<img src="/img/popcorn.png" />
 							<span className="title is-4">Movie Watchlist</span>
 						</Link>
 
