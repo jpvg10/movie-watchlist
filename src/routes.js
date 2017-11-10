@@ -10,6 +10,10 @@ import Page404 from './components/page404';
 import Login from './components/login';
 import Signup from './components/signup';
 import Navbar from './components/shared/navbar';
+import { ToastContainer } from 'react-toastify';
+
+// Styles
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // Authentication module
 import Auth from './auth';
@@ -19,6 +23,7 @@ class AppRoutes extends React.Component {
 		return(
 			<div>
 				<Navbar />
+				
 				<section className="section">
 					<div className="container">
 						<Switch>
@@ -37,6 +42,16 @@ class AppRoutes extends React.Component {
 						</Switch>
 					</div>
 				</section>
+
+				<ToastContainer 
+					position="top-center"
+					type="default"
+					autoClose={3000}
+					hideProgressBar
+					newestOnTop={false}
+					closeOnClick
+					pauseOnHover
+				/>
 			</div>
 		);
 	}

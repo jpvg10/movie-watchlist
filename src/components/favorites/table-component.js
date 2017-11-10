@@ -3,6 +3,7 @@ import axios from 'axios';
 
 //Component requires
 import Item from './item';
+import { toast } from 'react-toastify';
 
 // Authentication module
 import Auth from '../../auth';
@@ -23,7 +24,7 @@ class TableComponent extends React.Component {
 				});
 			}.bind(this))
 			.catch(function (error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			});
 	}
 
@@ -75,7 +76,7 @@ class TableComponent extends React.Component {
 				});
 			}.bind(this))
 			.catch(function (error){
-				console.log(error);
+				toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
 			});
 	}
 };

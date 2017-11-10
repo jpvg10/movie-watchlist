@@ -3,6 +3,7 @@ import axios from 'axios';
 
 //Component requires
 import ReactStars from 'react-stars'
+import { toast } from 'react-toastify';
 
 // Authentication module
 import Auth from '../../auth';
@@ -29,7 +30,7 @@ class Item extends React.Component {
 				console.log('Updated');
 			})
 			.catch(function(error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			})
 	}
 

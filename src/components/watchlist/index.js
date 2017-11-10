@@ -3,9 +3,6 @@ import React from 'react';
 //Component requires
 import TableComponent from './table-component';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-
 // Authentication module
 import Auth from '../../auth';
 
@@ -30,17 +27,7 @@ class Watchlist extends React.Component {
 					</div>
 				</article>
 			 	
-			 	<TableComponent />
-
-			 	<ToastContainer 
-					position="top-center"
-					type="default"
-					autoClose={3000}
-					hideProgressBar
-					newestOnTop={false}
-					closeOnClick
-					pauseOnHover
-				/>
+			 	<TableComponent />			 	
 			</div>
 		);
 	}

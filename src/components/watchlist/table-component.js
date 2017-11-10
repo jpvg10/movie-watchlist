@@ -24,7 +24,7 @@ class TableComponent extends React.Component {
 				});
 			}.bind(this))
 			.catch(function (error){
-				console.log(error);
+				toast.error('Oops! Something happened. Try again later.');
 			});
 	}
 
@@ -110,7 +110,7 @@ class TableComponent extends React.Component {
 				});
 			}.bind(this))
 			.catch(function (error){
-				console.log(error);
+				toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
 			});
 	}
 };

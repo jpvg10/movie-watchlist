@@ -4,9 +4,6 @@ import React from 'react';
 import SearchForm from './search-form';
 import Item from './item';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-
 // Authentication module
 import Auth from '../../auth';
 
@@ -62,16 +59,6 @@ class Search extends React.Component {
 						{results}
 					</ul>
 				</div>
-
-				<ToastContainer 
-					position="top-center"
-					type="default"
-					autoClose={3000}
-					hideProgressBar
-					newestOnTop={false}
-					closeOnClick
-					pauseOnHover
-				/>
 			</div>
 		);
 	}
