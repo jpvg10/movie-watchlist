@@ -1,23 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+import { getWatchlistItems, deleteWatchlistItem } from '../../api/watchlist';
+import { addFavorite } from '../../api/favorites';
 
 // Component requires
 import Item from './item';
 import { toast } from 'react-toastify';
 
-// Authentication module
-import Auth from '../../auth';
-
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
-		let options = { 
-			method: 'delete',
-			url: '/api/watchlist',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: item } 
-		};
-		axios.request(options)
+		deleteWatchlistItem({ name: item })
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -28,24 +20,10 @@ class TableComponent extends React.Component {
 			});
 	}
 
-	onMove(item) {
-		let optionsDelete = { 
-			method: 'delete',
-			url: '/api/watchlist',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: item } 
-		};
-
-		let optionsPost = {
-			method: 'post',
-			url: '/api/favorites',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: item } 
-		}
-		
-		axios.request(optionsDelete)
+	onMove(item) {	
+		deleteWatchlistItem({ name: item })
 			.then(function(responseDelete){
-				axios.request(optionsPost)
+				addFavorite({ name: item })
 					.then(function(responsePost){
 						this.setState({
 							movies: responseDelete.data
@@ -98,12 +76,7 @@ class TableComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		let options = {
-			method: 'get',
-			url: '/api/watchlist',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }
-		};
-		axios.request(options)
+		getWatchlistItems()
 			.then(function (response){
 				this.setState({
 					movies: response.data

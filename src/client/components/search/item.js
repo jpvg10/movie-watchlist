@@ -1,22 +1,14 @@
 import React from 'react';
-import axios from 'axios';
+import { addFavorite } from '../../api/favorites';
+import { addWatchlistItem } from '../../api/watchlist';
 
 // Component requires
 import { toast } from 'react-toastify';
 
-// Authentication module
-import Auth from '../../auth';
-
 class Item extends React.Component {
 	// Custom functions
 	addToWatchlist() {
-		let options = {
-			method: 'post',
-			url: '/api/watchlist',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: this.props.name } 
-		};
-		axios.request(options)
+		addWatchlistItem({ name: this.props.name })
 			.then(function(response){
 				toast.success('Added to the watchlist!');
 			})
@@ -26,13 +18,7 @@ class Item extends React.Component {
 	}
 
 	addToFavorites() {
-		let options = { 
-			method: 'post',
-			url: '/api/favorites',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: this.props.name } 
-		};
-		axios.request(options)
+		addFavorite({ name: this.props.name })
 			.then(function(response){
 				toast.success('Added to favorites!');
 			})

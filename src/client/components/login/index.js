@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { login } from '../../api/authentication';
 
 //Component requires
 import UserForm from '../shared/user-form';
@@ -10,15 +10,7 @@ import Auth from '../../auth';
 class Login extends React.Component {
 	// Custom methods
 	onSubmit(email, password) {
-		let options = {
-			method: 'post',
-			url: '/auth/login',
-			data: { 
-				email: email,
-				password: password 
-			} 
-		};
-		axios.request(options)
+		login({ email, password })
 			.then(function(response){				
 				Auth.authenticateUser(response.data.token, response.data.user.email);
 				this.props.history.push('/');				

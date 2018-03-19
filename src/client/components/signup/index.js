@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { signup } from '../../api/authentication';
 
 //Component requires
 import UserForm from '../shared/user-form';
@@ -9,15 +9,7 @@ class Register extends React.Component {
 	onSubmit(email, password) {
 		let re = /\S+@\S+\.\S+/;
 		if(re.test(email)){
-			let options = {
-				method: 'post',
-				url: '/auth/signup',
-				data: { 
-					email: email,
-					password: password 
-				} 
-			};
-			axios.request(options)
+			signup({ email, password })
 				.then(function(response){				
 					localStorage.setItem('successMessage', 'You have successfully signed up. You can now log in');
 					this.props.history.push('/login');				

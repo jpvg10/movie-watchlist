@@ -1,23 +1,14 @@
 import React from 'react';
-import axios from 'axios';
+import { getFavorites, deleteFavorite } from '../../api/favorites';
 
 //Component requires
 import Item from './item';
 import { toast } from 'react-toastify';
 
-// Authentication module
-import Auth from '../../auth';
-
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
-		let options = { 
-			method: 'delete',
-			url: '/api/favorites',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }, 
-			data: { name: item } 
-		};
-		axios.request(options)
+		deleteFavorite({ name: item })
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -64,12 +55,7 @@ class TableComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		let options = {
-			method: 'get',
-			url: '/api/favorites',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() }
-		};
-		axios.request(options)
+		getFavorites()
 			.then(function (response){
 				this.setState({
 					movies: response.data

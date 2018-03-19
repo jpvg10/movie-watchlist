@@ -1,12 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import { editFavorite } from '../../api/favorites';
 
 //Component requires
 import ReactStars from 'react-stars'
 import { toast } from 'react-toastify';
-
-// Authentication module
-import Auth from '../../auth';
 
 class Item extends React.Component {
 	// Custom functions
@@ -15,23 +12,13 @@ class Item extends React.Component {
 	}
 
 	ratingChanged(newRating) {
-		let options = {
-			method: 'put',
-			url: '/api/favorites',
-			headers: { Authorization: 'Bearer ' + Auth.getToken() },
-			data: {
-				name: this.props.name,
-				stars: newRating
-			}
-		};
-
-		axios.request(options)
+		editFavorite({ name: this.props.name, newRating })
 			.then(function(response){
-				console.log('Updated');
+				toast.success('Updated!');
 			})
 			.catch(function(error){
 				toast.error('Oops! Something happened. Try again later.');
-			})
+			});
 	}
 
 	// Component functions	
