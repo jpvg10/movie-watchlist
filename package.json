@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "start-dev": "concurrently \"webpack -w\" \"nodemon server\""
+    "start": "node ./src/server/server.js",
+    "start-dev": "concurrently \"webpack -w --mode development\" \"nodemon ./src/server/server.js\""
   },
   "author": "",
   "license": "ISC",

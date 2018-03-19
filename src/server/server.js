@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const path = require('path');
 
 // Local environment variables
 if(process.env.NODE_ENV !== 'production'){
@@ -23,7 +24,7 @@ passport.use('local-signup', require('./passport/local-signup'));
 passport.use('local-login', require('./passport/local-login'));
 
 // Static files
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(path.join(__dirname, '../../dist')));
 
 // Middleware
 app.use('/api', require('./middleware/auth-check'));
