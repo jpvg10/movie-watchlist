@@ -14,10 +14,16 @@ class Watchlist extends React.Component {
 		deleteWatchlistItem({ name: item });
 	}
 
+	onMoveWatchlistItem(item) {
+		const { moveWatchlistItem } = this.props;
+		moveWatchlistItem({ name: item });
+	}
+
 	// Component methods
 	constructor(props) {
 		super(props);
 		this.onDeleteWatchlistItem = this.onDeleteWatchlistItem.bind(this);		
+		this.onMoveWatchlistItem = this.onMoveWatchlistItem.bind(this);		
 	}
 
 	componentWillMount() {
@@ -32,7 +38,7 @@ class Watchlist extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { getStatus, deleteStatus } = nextProps;
+		const { getStatus, deleteStatus, moveStatus } = nextProps;
 		
 		if(getStatus === 'failed'){
 			toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
@@ -41,6 +47,12 @@ class Watchlist extends React.Component {
 		if(deleteStatus === 'deleted'){
 			toast.success('Deleted!');
 		}else if(deleteStatus === 'failed'){
+			toast.error('Oops! Something happened. Try again later.');
+		}
+
+		if(moveStatus === 'moved'){
+			toast.success('Moved to favorites!');
+		}else if(moveStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}
 	}
@@ -63,6 +75,7 @@ class Watchlist extends React.Component {
 			 	<TableComponent 
 					watchlistItems={watchlistItems} 
 					onDeleteWatchlistItem={this.onDeleteWatchlistItem}
+					onMoveWatchlistItem={this.onMoveWatchlistItem}
 				/>
 			</div>
 		);

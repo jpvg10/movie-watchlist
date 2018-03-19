@@ -11,3 +11,8 @@ export const deleteWatchlistItem = ({ name }) => ({
     type: 'DELETE_WATCHLIST_ITEM_REQUEST',
     name
 });
+
+export const moveWatchlistItem = ({ name }) => ({
+    type: 'MOVE_WATCHLIST_ITEM_REQUEST',
+    name
+});

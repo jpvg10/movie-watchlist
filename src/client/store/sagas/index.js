@@ -10,4 +10,5 @@ export default function* root() {
     yield takeLatest('GET_WATCHLIST_ITEMS_REQUEST', watchlist.getWatchlistItems);
     yield takeLatest('ADD_WATCHLIST_ITEM_REQUEST', watchlist.addWatchlistItem);
     yield takeLatest('DELETE_WATCHLIST_ITEM_REQUEST', watchlist.deleteWatchlistItem);
+    yield takeLatest('MOVE_WATCHLIST_ITEM_REQUEST', watchlist.moveWatchlistItem);
 }

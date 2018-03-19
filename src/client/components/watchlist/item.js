@@ -8,7 +8,8 @@ class Item extends React.Component {
 	}
 
 	moveToFavorites() {
-		//this.props.onMove(this.props.name);
+		const { name, onMove } = this.props;
+		onMove(name);
 	}
 
 	// Component methods

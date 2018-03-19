@@ -61,4 +61,20 @@ const deleteStatus = (state = 'notDeleted', action) => {
     }
 };
 
-export default combineReducers({ watchlistItems, getStatus, addStatus, deleteStatus });
+const moveStatus = (state = 'notMoved', action) => {
+    switch (action.type) {
+        case 'MOVE_WATCHLIST_ITEM_REQUEST': {
+            return 'moving';
+        }
+        case 'MOVE_WATCHLIST_ITEM_SUCCESS': {
+            return 'moved';
+        }
+        case 'MOVE_WATCHLIST_ITEM_FAILURE': {
+            return 'failed';
+        }
+        default:
+            return state;
+    }
+};
+
+export default combineReducers({ watchlistItems, getStatus, addStatus, deleteStatus, moveStatus });

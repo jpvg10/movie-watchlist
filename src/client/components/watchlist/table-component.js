@@ -5,10 +5,10 @@ import Item from './item';
 
 class TableComponent extends React.Component {	
 	render() {
-		const { watchlistItems, onDeleteWatchlistItem } = this.props;
+		const { watchlistItems, onDeleteWatchlistItem, onMoveWatchlistItem } = this.props;
 		let movies = watchlistItems.map((item, index) => {
 			return(
-				<Item name={item.name} key={index} onDelete={onDeleteWatchlistItem} onMove={this.onMove} />
+				<Item name={item.name} key={index} onDelete={onDeleteWatchlistItem} onMove={onMoveWatchlistItem} />
 			);
 		});
 
