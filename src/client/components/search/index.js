@@ -32,10 +32,18 @@ class Search extends React.Component {
 	}
 	
 	render() {
+		const { addWatchlistItem, addFavorite } = this.props;
 		let results = this.state.results;
 		results = results.map(function(item, index){
 			return(
-				<Item key={index} name={item.name} director={item.director} year={item.year} />
+				<Item
+					key={index}
+					name={item.name}
+					director={item.director}
+					year={item.year}
+					addWatchlistItem={addWatchlistItem}
+					addFavorite={addFavorite}
+				/>
 			);
 		}.bind(this));
 

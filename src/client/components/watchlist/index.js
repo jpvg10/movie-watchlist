@@ -14,6 +14,7 @@ class Watchlist extends React.Component {
 	}
 
 	render() {
+		const { watchlistItems, deleteWatchlistItem } = this.props;
 		return(
 			<div>
 				<article className="media">
@@ -27,7 +28,10 @@ class Watchlist extends React.Component {
 					</div>
 				</article>
 			 	
-			 	<TableComponent />			 	
+			 	<TableComponent 
+					watchlistItems={watchlistItems} 
+					deleteWatchlistItem={deleteWatchlistItem}
+				/>
 			</div>
 		);
 	}

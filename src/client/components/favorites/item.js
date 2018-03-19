@@ -12,13 +12,7 @@ class Item extends React.Component {
 	}
 
 	ratingChanged(newRating) {
-		editFavorite({ name: this.props.name, newRating })
-			.then(function(response){
-				toast.success('Updated!');
-			})
-			.catch(function(error){
-				toast.error('Oops! Something happened. Try again later.');
-			});
+		this.props.onEdit(this.props.name, newRating);
 	}
 
 	// Component functions	

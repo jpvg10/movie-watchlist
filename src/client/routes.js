@@ -3,14 +3,16 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 // Components
 import Home from './components/home';
-import Search from './components/search';
-import Watchlist from './components/watchlist';
-import Favorites from './components/favorites';
 import Page404 from './components/page404';
 import Login from './components/login';
 import Signup from './components/signup';
 import Navbar from './components/shared/navbar';
 import { ToastContainer } from 'react-toastify';
+
+// Containers
+import Favorites from './containers/favorites';
+import Watchlist from './containers/watchlist';
+import Search from './containers/search';
 
 // Authentication module
 import Auth from './auth';

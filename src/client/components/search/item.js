@@ -8,23 +8,27 @@ import { toast } from 'react-toastify';
 class Item extends React.Component {
 	// Custom functions
 	addToWatchlist() {
-		addWatchlistItem({ name: this.props.name })
+		/*addWatchlistItem({ name: this.props.name })
 			.then(function(response){
 				toast.success('Added to the watchlist!');
 			})
 			.catch(function(error){
 				toast.error('Oops! Something happened. Try again later.');
-			});
+			});*/
+		const { addWatchlistItem } = this.props;
+		addWatchlistItem(this.props.name);
 	}
 
 	addToFavorites() {
-		addFavorite({ name: this.props.name })
+		/*addFavorite({ name: this.props.name })
 			.then(function(response){
 				toast.success('Added to favorites!');
 			})
 			.catch(function(error){
 				toast.error('Oops! Something happened. Try again later.');
-			});
+			});*/
+		const { addFavorite } = this.props;
+		addFavorite(this.props.name);
 	}
 
 	// Component functions

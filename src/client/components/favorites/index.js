@@ -14,6 +14,7 @@ class Favorites extends React.Component {
 	}
 
 	render() {
+		const { favorites, editFavorite, deleteFavorite } = this.props;
 		return(
 			<div>
 				<article className="media">
@@ -27,7 +28,9 @@ class Favorites extends React.Component {
 					</div>
 				</article>
 			 	
-			 	<TableComponent />
+			 	<TableComponent
+					favorites={favorites} editFavorite={editFavorite} deleteFavorite={deleteFavorite}
+				/>
 			</div>
 		);
 	}

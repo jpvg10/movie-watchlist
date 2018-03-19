@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 class TableComponent extends React.Component {
 	// Custom functions
 	onDelete(item) {
-		deleteWatchlistItem({ name: item })
+		/*deleteWatchlistItem({ name: item })
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -17,11 +17,13 @@ class TableComponent extends React.Component {
 			}.bind(this))
 			.catch(function (error){
 				toast.error('Oops! Something happened. Try again later.');
-			});
+			});*/
+		const { deleteWatchlistItem } = this.props;
+		deleteWatchlistItem(item);
 	}
 
 	onMove(item) {	
-		deleteWatchlistItem({ name: item })
+		/*deleteWatchlistItem({ name: item })
 			.then(function(responseDelete){
 				addFavorite({ name: item })
 					.then(function(responsePost){
@@ -36,7 +38,7 @@ class TableComponent extends React.Component {
 			}.bind(this))
 			.catch(function(error){
 				toast.error('Oops! Something happened. Try again later.');
-			});
+			});*/
 	}
 
 	// Component functions
@@ -50,8 +52,8 @@ class TableComponent extends React.Component {
 	}
 
 	render() {
-		let movies = this.state.movies;
-		movies = movies.map(function(item, index){
+		const { watchlistItems } = this.props;
+		let movies = watchlistItems.map(function(item, index){
 			return(
 				<Item name={item.name} key={index} onDelete={this.onDelete} onMove={this.onMove} />
 			);
@@ -76,7 +78,7 @@ class TableComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		getWatchlistItems()
+		/*getWatchlistItems()
 			.then(function (response){
 				this.setState({
 					movies: response.data
@@ -84,7 +86,10 @@ class TableComponent extends React.Component {
 			}.bind(this))
 			.catch(function (error){
 				toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
-			});
+			});*/
+		this.setState({
+			movies: this.props.watchlistItems
+		});
 	}
 };
 
