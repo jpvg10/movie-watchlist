@@ -12,9 +12,6 @@ import Signup from './components/signup';
 import Navbar from './components/shared/navbar';
 import { ToastContainer } from 'react-toastify';
 
-// Styles
-//import 'react-toastify/dist/ReactToastify.min.css';
-
 // Authentication module
 import Auth from './auth';
 
