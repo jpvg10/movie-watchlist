@@ -8,8 +8,8 @@ class UserForm extends React.Component {
 	}
 
 	// Component methods
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 

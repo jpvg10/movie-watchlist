@@ -8,8 +8,8 @@ class SearchForm extends React.Component {
 	}
 
 	// Component functions
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 

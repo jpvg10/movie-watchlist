@@ -34,8 +34,8 @@ class TableComponent extends React.Component {
 	}
 
 	// Component functions
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			movies: []
 		};
@@ -43,13 +43,28 @@ class TableComponent extends React.Component {
 		this.onEdit = this.onEdit.bind(this);
 	}
 
+	componentDidMount() {
+		/*getFavorites()
+			.then(function (response){
+				this.setState({
+					movies: response.data
+				});
+			}.bind(this))
+			.catch(function (error){
+				toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
+			});*/
+		this.setState({
+			movies: this.props.favorites
+		});
+	}
+
 	render() {
 		const { favorites } = this.props;
-		let movies = favorites.map(function(item, index){
+		let movies = favorites.map((item, index) => {
 			return(
 				<Item name={item.name} stars={item.stars} key={index} onDelete={this.onDelete} onEdit={this.onEdit} />
 			);
-		}.bind(this));
+		});
 
 		return(
 			<table className="table is-fullwidth is-hoverable">
@@ -67,21 +82,6 @@ class TableComponent extends React.Component {
 				</tbody>
 			</table>
 		);
-	}
-
-	componentDidMount() {
-		/*getFavorites()
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
-			});*/
-		this.setState({
-			movies: this.props.favorites
-		});
 	}
 };
 

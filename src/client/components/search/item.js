@@ -32,8 +32,8 @@ class Item extends React.Component {
 	}
 
 	// Component functions
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.addToWatchlist = this.addToWatchlist.bind(this);
 		this.addToFavorites = this.addToFavorites.bind(this);
 	}

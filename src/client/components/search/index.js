@@ -17,8 +17,8 @@ class Search extends React.Component {
 	}
 
 	// Component functions
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			results: []
 		};
@@ -34,7 +34,7 @@ class Search extends React.Component {
 	render() {
 		const { addWatchlistItem, addFavorite } = this.props;
 		let results = this.state.results;
-		results = results.map(function(item, index){
+		results = results.map((item, index) => {
 			return(
 				<Item
 					key={index}
@@ -45,7 +45,7 @@ class Search extends React.Component {
 					addFavorite={addFavorite}
 				/>
 			);
-		}.bind(this));
+		});
 
 		return(
 			<div>

@@ -13,8 +13,8 @@ class Navbar extends React.Component {
 	}
 
 	// Component methods
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			burgerActive: false
 		};

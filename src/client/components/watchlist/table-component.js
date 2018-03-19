@@ -42,8 +42,8 @@ class TableComponent extends React.Component {
 	}
 
 	// Component functions
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			movies: []
 		};
@@ -51,13 +51,28 @@ class TableComponent extends React.Component {
 		this.onMove = this.onMove.bind(this);
 	}
 
+	componentDidMount() {
+		/*getWatchlistItems()
+			.then(function (response){
+				this.setState({
+					movies: response.data
+				});
+			}.bind(this))
+			.catch(function (error){
+				toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
+			});*/
+		this.setState({
+			movies: this.props.watchlistItems
+		});
+	}
+
 	render() {
 		const { watchlistItems } = this.props;
-		let movies = watchlistItems.map(function(item, index){
+		let movies = watchlistItems.map((item, index) => {
 			return(
 				<Item name={item.name} key={index} onDelete={this.onDelete} onMove={this.onMove} />
 			);
-		}.bind(this));
+		});
 
 		return(
 			<table className="table is-fullwidth is-hoverable">
@@ -75,22 +90,7 @@ class TableComponent extends React.Component {
 				</tbody>
 			</table>
 		);
-	}
-
-	componentDidMount() {
-		/*getWatchlistItems()
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
-			});*/
-		this.setState({
-			movies: this.props.watchlistItems
-		});
-	}
+	}	
 };
 
 export default TableComponent;

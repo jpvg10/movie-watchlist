@@ -10,16 +10,16 @@ class Register extends React.Component {
 		let re = /\S+@\S+\.\S+/;
 		if(re.test(email)){
 			signup({ email, password })
-				.then(function(response){				
+				.then((response) => {
 					localStorage.setItem('successMessage', 'You have successfully signed up. You can now log in');
 					this.props.history.push('/login');				
-				}.bind(this))
-				.catch(function(error) {
+				})
+				.catch((error) => {
 					this.setState({
 						message: error.response.data.message,
 						success: error.response.data.success
 					});
-				}.bind(this));
+				});
 		}else{
 			this.setState({
 				message: 'Please use a valid email address',
@@ -29,14 +29,15 @@ class Register extends React.Component {
 	}
 
 	// Component methods
-	constructor() {
-		super();
-		this.onSubmit = this.onSubmit.bind(this);
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			message: '',
 			success: false
 		};
+
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	render() {

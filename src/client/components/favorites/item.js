@@ -16,8 +16,8 @@ class Item extends React.Component {
 	}
 
 	// Component functions	
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.ratingChanged = this.ratingChanged.bind(this);
 	}

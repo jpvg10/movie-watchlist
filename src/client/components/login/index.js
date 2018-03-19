@@ -11,22 +11,21 @@ class Login extends React.Component {
 	// Custom methods
 	onSubmit(email, password) {
 		login({ email, password })
-			.then(function(response){				
+			.then((response) => {
 				Auth.authenticateUser(response.data.token, response.data.user.email);
-				this.props.history.push('/');				
-			}.bind(this))
-			.catch(function(error){
+				this.props.history.push('/');
+			})
+			.catch((error) => {
 				this.setState({
 					message: error.response.data.message,
 					success: error.response.data.success
 				});
-			}.bind(this));
+			});
 	}
 
 	// Component methods
-	constructor() {
-		super();
-		this.onSubmit = this.onSubmit.bind(this);
+	constructor(props) {
+		super(props);
 
 		let storedMessage = localStorage.getItem('successMessage');
 		let message = '';
@@ -39,6 +38,8 @@ class Login extends React.Component {
 			message: message,
 			success: true
 		};
+
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	render() {
