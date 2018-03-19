@@ -4,6 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "webpack -p",
+    "heroku-postbuild": "npm run build",
     "start": "node ./src/server/server.js",
     "start-dev": "concurrently \"webpack -w --mode development\" \"nodemon ./src/server/server.js\""
   },

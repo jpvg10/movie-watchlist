@@ -24,7 +24,6 @@ class AppRoutes extends React.Component {
 				<section className="section">
 					<div className="container">
 						<Switch>
-							<Route exact path="/home" component={Home} />
 							<Route exact path="/" component={Home} />
 							<Route exact path="/search" component={Search} />
 							<Route exact path="/watchlist" component={Watchlist} />
