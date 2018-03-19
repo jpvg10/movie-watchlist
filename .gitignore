@@ -59,4 +59,7 @@ typings/
 
 
 # Webpack bundle
-public/js/bundle.js
+dist/js/bundle.js
+
+# Package lock
+package-lock.json

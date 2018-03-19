@@ -3,23 +3,23 @@ var path = require('path');
 module.exports = {
 	entry: path.resolve(__dirname, 'src') + '/index.js',
 	output: {
-		path: path.resolve(__dirname, 'public') + '/js',
+		path: path.resolve(__dirname, 'dist', 'js'),
+		publicPath: '/',
 		filename: 'bundle.js'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
-				test: /\.js$/,
-				include: path.resolve(__dirname, 'src'),
-				loader: 'babel-loader',
-				query: {
-					presets: ['react', 'env']
-				}
-			},
-			{
-				test: /\.css$/,
-				loader: 'style-loader!css-loader'
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: ['babel-loader']
 			}
 		]
+	},
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
+	devServer: {
+		contentBase: './dist'
 	}
 };

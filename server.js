@@ -23,7 +23,7 @@ passport.use('local-signup', require('./passport/local-signup'));
 passport.use('local-login', require('./passport/local-login'));
 
 // Static files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 
 // Middleware
 app.use('/api', require('./middleware/auth-check'));
