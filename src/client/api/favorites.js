@@ -20,15 +20,12 @@ export function addFavorite({ name }) {
     });
 }
 
-export function editFavorite({ name, newRating }) {
+export function editFavorite({ name, stars }) {
     return axios.request({
         method: 'put',
         url: '/api/favorites',
         headers: { Authorization: 'Bearer ' + Auth.getToken() },
-        data: {
-            name: name,
-            stars: newRating
-        }
+        data: { name, stars }
     });
 }
 

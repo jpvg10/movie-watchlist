@@ -1,41 +1,22 @@
 import React from 'react';
-import { addFavorite } from '../../api/favorites';
-import { addWatchlistItem } from '../../api/watchlist';
-
-// Component requires
-import { toast } from 'react-toastify';
 
 class Item extends React.Component {
 	// Custom functions
-	addToWatchlist() {
-		/*addWatchlistItem({ name: this.props.name })
-			.then(function(response){
-				toast.success('Added to the watchlist!');
-			})
-			.catch(function(error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-		const { addWatchlistItem } = this.props;
-		addWatchlistItem(this.props.name);
+	onClickFavorites() {
+		const { name, onAddFavorite } = this.props;
+		onAddFavorite(name);
+	}
+	
+	onClickWatchlist() {
+		const { name, onAddWatchlistItem } = this.props;
+		onAddWatchlistItem(name);
 	}
 
-	addToFavorites() {
-		/*addFavorite({ name: this.props.name })
-			.then(function(response){
-				toast.success('Added to favorites!');
-			})
-			.catch(function(error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-		const { addFavorite } = this.props;
-		addFavorite(this.props.name);
-	}
-
-	// Component functions
+	// Component methods
 	constructor(props) {
 		super(props);
-		this.addToWatchlist = this.addToWatchlist.bind(this);
-		this.addToFavorites = this.addToFavorites.bind(this);
+		this.onClickFavorites = this.onClickFavorites.bind(this);
+		this.onClickWatchlist = this.onClickWatchlist.bind(this);
 	}
 
 	render() {
@@ -47,8 +28,8 @@ class Item extends React.Component {
 						{/*<p>{this.props.director}, {this.props.year}</p>*/}
 					</div>
 					<div className="column">
-						<p><button className="button is-default" onClick={this.addToWatchlist}>Add to watchlist</button></p>
-						<p><button className="button is-default" onClick={this.addToFavorites}>Add to favorites</button></p>
+						<p><button className="button is-default" onClick={this.onClickWatchlist}>Add to watchlist</button></p>
+						<p><button className="button is-default" onClick={this.onClickFavorites}>Add to favorites</button></p>
 					</div>
 				</div>
 			</li>

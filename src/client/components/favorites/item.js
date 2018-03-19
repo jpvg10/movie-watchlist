@@ -1,21 +1,21 @@
 import React from 'react';
-import { editFavorite } from '../../api/favorites';
 
 //Component requires
 import ReactStars from 'react-stars'
-import { toast } from 'react-toastify';
 
 class Item extends React.Component {
 	// Custom functions
 	handleDelete() {
-		this.props.onDelete(this.props.name);
+		const { name, onDelete } = this.props;
+		onDelete(name);
 	}
 
 	ratingChanged(newRating) {
-		this.props.onEdit(this.props.name, newRating);
+		const { name, onEdit } = this.props;
+		onEdit(name, newRating);
 	}
 
-	// Component functions	
+	// Component methods	
 	constructor(props) {
 		super(props);
 		this.handleDelete = this.handleDelete.bind(this);

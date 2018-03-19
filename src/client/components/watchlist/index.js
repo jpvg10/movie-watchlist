@@ -2,19 +2,51 @@ import React from 'react';
 
 //Component requires
 import TableComponent from './table-component';
+import { toast } from 'react-toastify';
 
 // Authentication module
 import Auth from '../../auth';
 
 class Watchlist extends React.Component {
+	// Custom functions
+	onDeleteWatchlistItem(item) {
+		const { deleteWatchlistItem } = this.props;
+		deleteWatchlistItem({ name: item });
+	}
+
+	// Component methods
+	constructor(props) {
+		super(props);
+		this.onDeleteWatchlistItem = this.onDeleteWatchlistItem.bind(this);		
+	}
+
 	componentWillMount() {
 		if(!Auth.isUserAuthenticated()){
 			this.props.history.push('/');
 		}
 	}
 
+	componentDidMount() {
+		const { getWatchlistItems } = this.props;
+		getWatchlistItems();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { getStatus, deleteStatus } = nextProps;
+		
+		if(getStatus === 'failed'){
+			toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
+		}		
+
+		if(deleteStatus === 'deleted'){
+			toast.success('Deleted!');
+		}else if(deleteStatus === 'failed'){
+			toast.error('Oops! Something happened. Try again later.');
+		}
+	}
+
 	render() {
-		const { watchlistItems, deleteWatchlistItem } = this.props;
+		const { watchlistItems } = this.props;
 		return(
 			<div>
 				<article className="media">
@@ -30,7 +62,7 @@ class Watchlist extends React.Component {
 			 	
 			 	<TableComponent 
 					watchlistItems={watchlistItems} 
-					deleteWatchlistItem={deleteWatchlistItem}
+					onDeleteWatchlistItem={this.onDeleteWatchlistItem}
 				/>
 			</div>
 		);

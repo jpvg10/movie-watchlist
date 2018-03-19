@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
-import { getWatchlistItems, addWatchlistItem, deleteWatchlistItem } from '../store/actions/watchlist';
+import { getWatchlistItems, deleteWatchlistItem } from '../store/actions/watchlist';
 import Watchlist from '../components/watchlist';
 
 const mapStateToProps = (state) => ({
-    watchlistItems: state.watchlistItems
+    watchlistItems: state.watchlistReducer.watchlistItems,
+    getStatus: state.watchlistReducer.getStatus,
+    deleteStatus: state.watchlistReducer.deleteStatus
 });
 
 const mapDispatchToProps = {
-    getWatchlistItems, addWatchlistItem, deleteWatchlistItem
+    getWatchlistItems, deleteWatchlistItem
 };
 
 const WatchlistContainer = connect(

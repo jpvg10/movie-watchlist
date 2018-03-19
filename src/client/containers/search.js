@@ -3,14 +3,18 @@ import { addFavorite } from '../store/actions/favorites';
 import { addWatchlistItem } from '../store/actions/watchlist';
 import Search from '../components/search';
 
+const mapStateToProps = (state) => ({
+  addFavoriteStatus: state.favoritesReducer.addStatus,
+  addWatchlistItemStatus: state.watchlistReducer.addStatus
+});
+
 const mapDispatchToProps = {
     addFavorite, addWatchlistItem
 };
 
 const SearchContainer = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Search);
 
 export default SearchContainer;
-

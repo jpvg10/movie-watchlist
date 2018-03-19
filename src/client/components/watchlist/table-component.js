@@ -1,76 +1,14 @@
 import React from 'react';
-import { getWatchlistItems, deleteWatchlistItem } from '../../api/watchlist';
-import { addFavorite } from '../../api/favorites';
 
 // Component requires
 import Item from './item';
-import { toast } from 'react-toastify';
 
-class TableComponent extends React.Component {
-	// Custom functions
-	onDelete(item) {
-		/*deleteWatchlistItem({ name: item })
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-		const { deleteWatchlistItem } = this.props;
-		deleteWatchlistItem(item);
-	}
-
-	onMove(item) {	
-		/*deleteWatchlistItem({ name: item })
-			.then(function(responseDelete){
-				addFavorite({ name: item })
-					.then(function(responsePost){
-						this.setState({
-							movies: responseDelete.data
-						});
-						toast.success('Moved to favorites!');
-					}.bind(this))
-					.catch(function(error){
-						toast.error('Oops! Something happened. Try again later.');
-					});
-			}.bind(this))
-			.catch(function(error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-	}
-
-	// Component functions
-	constructor(props) {
-		super(props);
-		this.state = {
-			movies: []
-		};
-		this.onDelete = this.onDelete.bind(this);
-		this.onMove = this.onMove.bind(this);
-	}
-
-	componentDidMount() {
-		/*getWatchlistItems()
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
-			});*/
-		this.setState({
-			movies: this.props.watchlistItems
-		});
-	}
-
+class TableComponent extends React.Component {	
 	render() {
-		const { watchlistItems } = this.props;
+		const { watchlistItems, onDeleteWatchlistItem } = this.props;
 		let movies = watchlistItems.map((item, index) => {
 			return(
-				<Item name={item.name} key={index} onDelete={this.onDelete} onMove={this.onMove} />
+				<Item name={item.name} key={index} onDelete={onDeleteWatchlistItem} onMove={this.onMove} />
 			);
 		});
 

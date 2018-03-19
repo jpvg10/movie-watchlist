@@ -3,14 +3,15 @@ import React from 'react';
 class Item extends React.Component {
 	// Custom functions
 	handleDelete() {
-		this.props.onDelete(this.props.name);
+		const { name, onDelete } = this.props;
+		onDelete(name);
 	}
 
 	moveToFavorites() {
-		this.props.onMove(this.props.name);
+		//this.props.onMove(this.props.name);
 	}
 
-	// Component functions
+	// Component methods
 	constructor(props) {
 		super(props);
 		this.handleDelete = this.handleDelete.bind(this);

@@ -1,31 +1,82 @@
+import { combineReducers } from 'redux';
+
 const favorites = (state = [], action) => {
     switch (action.type) {
-        case 'GET_FAVORITES':
-            return state;
-        case 'ADD_FAVORITE':
-            return [
-                ...state,
-                {
-                    name: action.name,
-                    stars: 0
-                }
-            ];
-        case 'EDIT_FAVORITE':
-            return state.map((favorite) => {
-                if(favorite.name === action.name){
-                    return {
-                        ...favorite,
-                        stars: action.newRating
-                    };
-                }else{
-                    return favorite;
-                }
-            });
-        case 'DELETE_FAVORITE':
-            return state.filter((favorite) => favorite.name !== action.name);
+        case 'GET_FAVORITES_SUCCESS':
+            return action.items;
+        case 'ADD_FAVORITE_SUCCESS':
+            return action.items;
+        case 'EDIT_FAVORITE_SUCCESS':
+            return action.items;
+        case 'DELETE_FAVORITE_SUCCESS':
+            return action.items;
         default:
             return state;
     }
 };
 
-export default favorites;
+const getStatus = (state = 'notLoaded', action) => {
+    switch (action.type) {
+        case 'GET_FAVORITES_REQUEST': {
+            return 'loading';
+        }
+        case 'GET_FAVORITES_SUCCESS': {
+            return 'loaded';
+        }
+        case 'GET_FAVORITES_FAILURE': {
+            return 'failed';
+        }
+        default:
+            return state;
+    }
+};
+
+const addStatus = (state = 'notAdded', action) => {
+    switch (action.type) {
+        case 'ADD_FAVORITE_REQUEST': {
+            return 'adding';
+        }
+        case 'ADD_FAVORITE_SUCCESS': {
+            return 'added';
+        }
+        case 'ADD_FAVORITE_FAILURE': {
+            return 'failed';
+        }
+        default:
+            return state;
+    }
+};
+
+const editStatus = (state = 'notEdited', action) => {
+    switch (action.type) {
+        case 'EDIT_FAVORITE_REQUEST': {
+            return 'editing';
+        }
+        case 'EDIT_FAVORITE_SUCCESS': {
+            return 'edited';
+        }
+        case 'EDIT_FAVORITE_FAILURE': {
+            return 'failed';
+        }
+        default:
+            return state;
+    }
+};
+
+const deleteStatus = (state = 'notDeleted', action) => {
+    switch (action.type) {
+        case 'DELETE_FAVORITE_REQUEST': {
+            return 'deleting';
+        }
+        case 'DELETE_FAVORITE_SUCCESS': {
+            return 'deleted';
+        }
+        case 'DELETE_FAVORITE_FAILURE': {
+            return 'failed';
+        }
+        default:
+            return state;
+    }
+};
+
+export default combineReducers({ favorites, getStatus, addStatus, editStatus, deleteStatus });

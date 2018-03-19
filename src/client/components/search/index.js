@@ -3,6 +3,7 @@ import React from 'react';
 // Component requires
 import SearchForm from './search-form';
 import Item from './item';
+import { toast } from 'react-toastify';
 
 // Authentication module
 import Auth from '../../auth';
@@ -16,13 +17,41 @@ class Search extends React.Component {
 		});
 	}
 
-	// Component functions
+	onAddFavorite(item) {
+		const { addFavorite } = this.props;
+		addFavorite({ name: item });
+	}
+
+	onAddWatchlistItem(item) {
+		const { addWatchlistItem } = this.props;
+		addWatchlistItem({ name: item });
+	}
+
+	// Component methods
 	constructor(props) {
 		super(props);
 		this.state = {
 			results: []
 		};
 		this.onSearch = this.onSearch.bind(this);
+		this.onAddFavorite = this.onAddFavorite.bind(this);
+		this.onAddWatchlistItem = this.onAddWatchlistItem.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { addFavoriteStatus, addWatchlistItemStatus } = nextProps;
+
+		if(addFavoriteStatus === 'added'){
+			toast.success('Added to favorites!');
+		}else if(addFavoriteStatus === 'failed'){
+			toast.error('Oops! Something happened. Try again later.');
+		}
+
+		if(addWatchlistItemStatus === 'added'){
+			toast.success('Added to the watchlist!');
+		}else if(addWatchlistItemStatus === 'failed'){
+			toast.error('Oops! Something happened. Try again later.');
+		}
 	}
 
 	componentWillMount() {
@@ -41,8 +70,8 @@ class Search extends React.Component {
 					name={item.name}
 					director={item.director}
 					year={item.year}
-					addWatchlistItem={addWatchlistItem}
-					addFavorite={addFavorite}
+					onAddFavorite={this.onAddFavorite}				
+					onAddWatchlistItem={this.onAddWatchlistItem}
 				/>
 			);
 		});

@@ -7,7 +7,7 @@ class SearchForm extends React.Component {
 		this.props.onSearch(this.refs.title.value);
 	}
 
-	// Component functions
+	// Component methods
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);

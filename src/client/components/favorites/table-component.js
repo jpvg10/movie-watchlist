@@ -1,68 +1,15 @@
 import React from 'react';
-import { getFavorites, deleteFavorite } from '../../api/favorites';
 
 //Component requires
 import Item from './item';
-import { toast } from 'react-toastify';
 
-class TableComponent extends React.Component {
-	// Custom functions
-	onDelete(item) {
-		/*deleteFavorite({ name: item })
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-		const { deleteFavorite } = this.props;
-		deleteFavorite(item);
-	}
-
-	onEdit(item, newRating) {
-		/*editFavorite({ name: this.props.name, newRating })
-			.then(function(response){
-				toast.success('Updated!');
-			})
-			.catch(function(error){
-				toast.error('Oops! Something happened. Try again later.');
-			});*/
-		const { editFavorite } = this.props;
-		editFavorite(item, newRating);
-	}
-
-	// Component functions
-	constructor(props) {
-		super(props);
-		this.state = {
-			movies: []
-		};
-		this.onDelete = this.onDelete.bind(this);
-		this.onEdit = this.onEdit.bind(this);
-	}
-
-	componentDidMount() {
-		/*getFavorites()
-			.then(function (response){
-				this.setState({
-					movies: response.data
-				});
-			}.bind(this))
-			.catch(function (error){
-				toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
-			});*/
-		this.setState({
-			movies: this.props.favorites
-		});
-	}
-
+class TableComponent extends React.Component {	
 	render() {
-		const { favorites } = this.props;
+		const { favorites, onEditFavorite, onDeleteFavorite } = this.props;
+		
 		let movies = favorites.map((item, index) => {
 			return(
-				<Item name={item.name} stars={item.stars} key={index} onDelete={this.onDelete} onEdit={this.onEdit} />
+				<Item name={item.name} stars={item.stars} key={index} onEdit={onEditFavorite} onDelete={onDeleteFavorite} />
 			);
 		});
 
