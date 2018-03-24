@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack --mode production --config webpack.prod.js",
     "heroku-postbuild": "npm run build",
     "start": "node ./src/server/server.js",
-    "start-dev": "concurrently \"webpack -w --mode development\" \"nodemon ./src/server/server.js\""
+    "start-dev": "concurrently \"webpack -w --mode development --config webpack.dev.js\" \"nodemon ./src/server/server.js\""
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "dotenv": "^5.0.1",
     "nodemon": "^1.12.1",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12"
+    "webpack-cli": "^2.0.12",
+    "webpack-merge": "^4.1.2"
   },
   "dependencies": {
     "axios": "^0.18.0",

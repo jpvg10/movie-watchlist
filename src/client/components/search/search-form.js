@@ -1,7 +1,7 @@
 import React from 'react';
 
 class SearchForm extends React.Component {
-	// Custom functions
+	// Custom methods
 	handleSubmit(e) {
 		e.preventDefault();
 		this.props.onSearch(this.refs.title.value);

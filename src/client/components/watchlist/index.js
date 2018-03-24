@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Auth from '../../auth';
 
 class Watchlist extends React.Component {
-	// Custom functions
+	// Custom methods
 	onDeleteWatchlistItem(item) {
 		const { deleteWatchlistItem } = this.props;
 		deleteWatchlistItem({ name: item });

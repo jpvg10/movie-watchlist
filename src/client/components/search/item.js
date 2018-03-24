@@ -1,7 +1,7 @@
 import React from 'react';
 
 class Item extends React.Component {
-	// Custom functions
+	// Custom methods
 	onClickFavorites() {
 		const { name, onAddFavorite } = this.props;
 		onAddFavorite(name);

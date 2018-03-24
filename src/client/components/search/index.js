@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import Auth from '../../auth';
 
 class Search extends React.Component {
-	// Custom functions
+	// Custom methods
 	onSearch(name) {
 		let results = [{ name: name }];
 		this.setState({

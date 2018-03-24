@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
 	entry: ['babel-polyfill', path.resolve(__dirname, 'src', 'client') + '/index.js'],
@@ -18,8 +18,5 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.jsx']
-	},
-	devServer: {
-		contentBase: './dist'
 	}
 };

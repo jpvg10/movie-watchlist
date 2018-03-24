@@ -1,7 +1,7 @@
 import React from 'react';
 
 class Item extends React.Component {
-	// Custom functions
+	// Custom methods
 	handleDelete() {
 		const { name, onDelete } = this.props;
 		onDelete(name);
