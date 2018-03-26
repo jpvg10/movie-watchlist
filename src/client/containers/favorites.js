@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getFavorites, editFavorite, deleteFavorite } from '../store/actions/favorites';
+import { getFavorites, editFavorite, deleteFavorite, resetEditFavoriteStatus, resetDeleteFavoriteStatus } from '../store/actions/favorites';
 import Favorites from '../components/favorites';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getFavorites, editFavorite, deleteFavorite
+    getFavorites, editFavorite, deleteFavorite, resetEditFavoriteStatus, resetDeleteFavoriteStatus
 };
 
 const FavoritesContainer = connect(

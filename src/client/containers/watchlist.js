@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getWatchlistItems, deleteWatchlistItem, moveWatchlistItem } from '../store/actions/watchlist';
+import { getWatchlistItems, deleteWatchlistItem, moveWatchlistItem, resetDeleteWatchlistItemStatus, resetMoveWatchlistItemStatus } from '../store/actions/watchlist';
 import Watchlist from '../components/watchlist';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getWatchlistItems, deleteWatchlistItem, moveWatchlistItem
+    getWatchlistItems, deleteWatchlistItem, moveWatchlistItem, resetDeleteWatchlistItemStatus, resetMoveWatchlistItemStatus
 };
 
 const WatchlistContainer = connect(

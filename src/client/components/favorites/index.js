@@ -38,7 +38,7 @@ class Favorites extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { getStatus, editStatus, deleteStatus } = nextProps;
+		const { getStatus, editStatus, deleteStatus, resetEditFavoriteStatus, resetDeleteFavoriteStatus } = nextProps;
 		
 		if(getStatus === 'failed'){
 			toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
@@ -46,12 +46,14 @@ class Favorites extends React.Component {
 
 		if(editStatus === 'edited'){
 			toast.success('Updated!');
+			resetEditFavoriteStatus();
 		}else if(editStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}
 
 		if(deleteStatus === 'deleted'){
 			toast.success('Deleted!');
+			resetDeleteFavoriteStatus();		
 		}else if(deleteStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}

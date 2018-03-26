@@ -16,3 +16,15 @@ export const moveWatchlistItem = ({ name }) => ({
     type: 'MOVE_WATCHLIST_ITEM_REQUEST',
     name
 });
+
+export const resetAddWatchlistItemStatus = () => ({
+    type: 'RESET_ADD_WATCHLIST_ITEM_STATUS'
+});
+
+export const resetDeleteWatchlistItemStatus = () => ({
+    type: 'RESET_DELETE_WATCHLIST_ITEM_STATUS'
+});
+
+export const resetMoveWatchlistItemStatus = () => ({
+    type: 'RESET_MOVE_WATCHLIST_ITEM_STATUS'
+});

@@ -38,7 +38,7 @@ class Watchlist extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { getStatus, deleteStatus, moveStatus } = nextProps;
+		const { getStatus, deleteStatus, moveStatus, resetDeleteWatchlistItemStatus, resetMoveWatchlistItemStatus } = nextProps;
 		
 		if(getStatus === 'failed'){
 			toast.error('Oops! Can\'t retrieve your watchlist. Try again later.');
@@ -46,12 +46,14 @@ class Watchlist extends React.Component {
 
 		if(deleteStatus === 'deleted'){
 			toast.success('Deleted!');
+			resetDeleteWatchlistItemStatus();
 		}else if(deleteStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}
 
 		if(moveStatus === 'moved'){
 			toast.success('Moved to favorites!');
+			resetMoveWatchlistItemStatus();
 		}else if(moveStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}

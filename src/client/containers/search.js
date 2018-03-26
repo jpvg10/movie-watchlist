@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { addFavorite } from '../store/actions/favorites';
-import { addWatchlistItem } from '../store/actions/watchlist';
+import { addFavorite, resetAddFavoriteStatus } from '../store/actions/favorites';
+import { addWatchlistItem, resetAddWatchlistItemStatus } from '../store/actions/watchlist';
 import Search from '../components/search';
 
 const mapStateToProps = (state) => ({
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    addFavorite, addWatchlistItem
+    addFavorite, resetAddFavoriteStatus, addWatchlistItem, resetAddWatchlistItemStatus
 };
 
 const SearchContainer = connect(

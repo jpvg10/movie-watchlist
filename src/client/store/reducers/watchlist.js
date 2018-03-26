@@ -15,15 +15,12 @@ const watchlistItems = (state = [], action) => {
 
 const getStatus = (state = 'notLoaded', action) => {
     switch (action.type) {
-        case 'GET_WATCHLIST_ITEMS_REQUEST': {
+        case 'GET_WATCHLIST_ITEMS_REQUEST':
             return 'loading';
-        }
-        case 'GET_WATCHLIST_ITEMS_SUCCESS': {
+        case 'GET_WATCHLIST_ITEMS_SUCCESS':
             return 'loaded';
-        }
-        case 'GET_WATCHLIST_ITEMS_FAILURE': {
+        case 'GET_WATCHLIST_ITEMS_FAILURE':
             return 'failed';
-        }
         default:
             return state;
     }
@@ -31,15 +28,14 @@ const getStatus = (state = 'notLoaded', action) => {
 
 const addStatus = (state = 'notAdded', action) => {
     switch (action.type) {
-        case 'ADD_WATCHLIST_ITEM_REQUEST': {
+        case 'ADD_WATCHLIST_ITEM_REQUEST':
             return 'adding';
-        }
-        case 'ADD_WATCHLIST_ITEM_SUCCESS': {
+        case 'ADD_WATCHLIST_ITEM_SUCCESS':
             return 'added';
-        }
-        case 'ADD_WATCHLIST_ITEM_FAILURE': {
+        case 'ADD_WATCHLIST_ITEM_FAILURE':
             return 'failed';
-        }
+        case 'RESET_ADD_WATCHLIST_ITEM_STATUS':
+            return 'notAdded';
         default:
             return state;
     }
@@ -47,15 +43,14 @@ const addStatus = (state = 'notAdded', action) => {
 
 const deleteStatus = (state = 'notDeleted', action) => {
     switch (action.type) {
-        case 'DELETE_WATCHLIST_ITEM_REQUEST': {
+        case 'DELETE_WATCHLIST_ITEM_REQUEST':
             return 'deleting';
-        }
-        case 'DELETE_WATCHLIST_ITEM_SUCCESS': {
+        case 'DELETE_WATCHLIST_ITEM_SUCCESS':
             return 'deleted';
-        }
-        case 'DELETE_WATCHLIST_ITEM_FAILURE': {
+        case 'DELETE_WATCHLIST_ITEM_FAILURE':
             return 'failed';
-        }
+        case 'RESET_DELETE_WATCHLIST_ITEM_STATUS':
+            return 'notDeleted';
         default:
             return state;
     }
@@ -63,15 +58,14 @@ const deleteStatus = (state = 'notDeleted', action) => {
 
 const moveStatus = (state = 'notMoved', action) => {
     switch (action.type) {
-        case 'MOVE_WATCHLIST_ITEM_REQUEST': {
+        case 'MOVE_WATCHLIST_ITEM_REQUEST':
             return 'moving';
-        }
-        case 'MOVE_WATCHLIST_ITEM_SUCCESS': {
+        case 'MOVE_WATCHLIST_ITEM_SUCCESS':
             return 'moved';
-        }
-        case 'MOVE_WATCHLIST_ITEM_FAILURE': {
+        case 'MOVE_WATCHLIST_ITEM_FAILURE':
             return 'failed';
-        }
+        case 'RESET_MOVE_WATCHLIST_ITEM_STATUS':
+            return 'notMoved';
         default:
             return state;
     }

@@ -39,16 +39,18 @@ class Search extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { addFavoriteStatus, addWatchlistItemStatus } = nextProps;
+		const { addFavoriteStatus, resetAddFavoriteStatus, addWatchlistItemStatus, resetAddWatchlistItemStatus } = nextProps;
 
 		if(addFavoriteStatus === 'added'){
 			toast.success('Added to favorites!');
+			resetAddFavoriteStatus();
 		}else if(addFavoriteStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}
 
 		if(addWatchlistItemStatus === 'added'){
 			toast.success('Added to the watchlist!');
+			resetAddWatchlistItemStatus();
 		}else if(addWatchlistItemStatus === 'failed'){
 			toast.error('Oops! Something happened. Try again later.');
 		}
