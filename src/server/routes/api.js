@@ -10,7 +10,8 @@ router.get('/watchlist', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -20,7 +21,8 @@ router.post('/watchlist', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -30,7 +32,8 @@ router.delete('/watchlist', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -40,7 +43,8 @@ router.get('/favorites', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -50,7 +54,8 @@ router.post('/favorites', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -60,7 +65,8 @@ router.put('/favorites', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
@@ -70,7 +76,8 @@ router.delete('/favorites', function(req, res){
 			res.send(data);
 		})
 		.catch(function(error){
-			res.send(error);
+			if (!error.statusCode) error.statusCode = 500;
+			res.status(error.statusCode).send(error);
 		});
 });
 
