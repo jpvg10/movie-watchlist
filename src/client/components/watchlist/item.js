@@ -23,8 +23,8 @@ class Item extends React.Component {
 		return(
 			<tr>				
 				<td>{this.props.name}</td>
-				<td></td>
-				<td></td>
+				<td>-</td>
+				<td>-</td>
 				<td>
 					<button className="button is-success is-outlined" onClick={this.moveToFavorites}><i className="fa fa-heart"></i></button>
 				</td>

@@ -26,8 +26,8 @@ class Item extends React.Component {
 		return(
 			<tr>				
 				<td>{this.props.name}</td>
-				<td></td>
-				<td></td>
+				<td>-</td>
+				<td>-</td>
 				<td>
 					<ReactStars half={false} size={20} onChange={this.ratingChanged} value={this.props.stars} />
 				</td>
