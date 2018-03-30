@@ -14,16 +14,13 @@ module.exports = {
 	},
 	addToWatchlist: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			listModel.findOne({ _user: userId })
-				.then(function(list){					
-					list.watchlist.push({ name: movieName });
-					list.save()
-						.then(function(updatedList){
-							resolve(updatedList.watchlist);
-						})
-						.catch(function(error){
-							reject(error);
-						});
+			listModel.findOneAndUpdate(
+				{ _user: userId },
+				{ $push: { watchlist: {name: movieName} } },
+				{ new: true }
+			)
+				.then(function(list){
+					resolve(list.watchlist);
 				})
 				.catch(function(error){
 					reject(error);
@@ -32,18 +29,13 @@ module.exports = {
 	},
 	removeFromWatchlist: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			listModel.findOne({ _user: userId })
+			listModel.findOneAndUpdate(
+				{ _user: userId },
+				{ $pull: { watchlist: {name: movieName} } },
+				{ new: true }
+			)
 				.then(function(list){
-					list.watchlist = list.watchlist.filter(function(movie){
-						return movie.name !== movieName;
-					});
-					list.save()
-						.then(function(updatedList){
-							resolve(updatedList.watchlist);
-						})
-						.catch(function(error){
-							reject(error);
-						});
+					resolve(list.watchlist);
 				})
 				.catch(function(error){
 					reject(error);

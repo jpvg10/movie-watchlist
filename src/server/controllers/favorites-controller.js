@@ -14,16 +14,13 @@ module.exports = {
 	},
 	addFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			listModel.findOne({ _user: userId })
+			listModel.findOneAndUpdate(
+				{ _user: userId },
+				{ $push: { favorites: {name: movieName} } },
+				{ new: true }
+			)
 				.then(function(list){
-					list.favorites.push({ name: movieName });
-					list.save()
-						.then(function(updatedList){
-							resolve(updatedList.favorites);
-						})
-						.catch(function(error){
-							reject(error);
-						});
+					resolve(list.favorites);
 				})
 				.catch(function(error){
 					reject(error);
@@ -32,23 +29,13 @@ module.exports = {
 	},
 	editFavorite: function(userId, movieName, stars){
 		return new Promise(function(resolve, reject){
-			listModel.findOne({ _user: userId })
+			listModel.findOneAndUpdate(
+				{ _user: userId, 'favorites.name': movieName },
+				{ $set: { 'favorites.$.stars': stars } },
+				{ new: true }
+			)
 				.then(function(list){
-					let newFavorites = list.favorites;
-					newFavorites.forEach(function(item){
-						if(item.name === movieName){
-							item.stars = stars;
-							return;
-						}
-					});
-					list.favorites = newFavorites;
-					list.save()
-						.then(function(updatedList){
-							resolve(updatedList.favorites);
-						})
-						.catch(function(error){
-							reject(error);
-						});
+					resolve(list.favorites);
 				})
 				.catch(function(error){
 					reject(error);
@@ -57,18 +44,13 @@ module.exports = {
 	},
 	removeFavorite: function(userId, movieName){
 		return new Promise(function(resolve, reject){
-			listModel.findOne({ _user: userId })
+			listModel.findOneAndUpdate(
+				{ _user: userId },
+				{ $pull: { favorites: {name: movieName} } },
+				{ new: true }
+			)
 				.then(function(list){
-					list.favorites = list.favorites.filter(function(movie){
-						return movie.name !== movieName;
-					});
-					list.save()
-						.then(function(updatedList){
-							resolve(updatedList.favorites);
-						})
-						.catch(function(error){
-							reject(error);
-						});
+					resolve(list.favorites);
 				})
 				.catch(function(error){
 					reject(error);
