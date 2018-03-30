@@ -12,12 +12,19 @@ class Item extends React.Component {
 
 	ratingChanged(newRating) {
 		const { name, onEdit } = this.props;
-		onEdit(name, newRating);
+		this.setState({
+			stars: newRating
+		}, () => {
+			onEdit(name, newRating);
+		});
 	}
 
 	// Component methods	
 	constructor(props) {
 		super(props);
+		this.state = {
+			stars: this.props.stars
+		};
 		this.handleDelete = this.handleDelete.bind(this);
 		this.ratingChanged = this.ratingChanged.bind(this);
 	}
@@ -29,7 +36,7 @@ class Item extends React.Component {
 				<td>-</td>
 				<td>-</td>
 				<td>
-					<ReactStars half={false} size={20} onChange={this.ratingChanged} value={this.props.stars} />
+					<ReactStars half={false} size={20} onChange={this.ratingChanged} value={this.state.stars} />
 				</td>
 				<td>
 					<button className="button is-danger is-outlined" onClick={this.handleDelete}><i className="fa fa-times"></i></button>
