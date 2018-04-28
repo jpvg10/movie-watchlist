@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Item extends React.Component {
+class Item extends React.PureComponent {
 	// Custom methods
 	onClickFavorites() {
 		const { name, onAddFavorite } = this.props;

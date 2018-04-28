@@ -3,12 +3,12 @@ import React from 'react';
 // Authentication module
 import Auth from '../../auth';
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
 	render() {
 		return(
 			<div>
 			 	<h1 className="title">Welcome to the Movie Watchlist!</h1>
-			 	
+
 			 	<div className="columns">
 					<div className="column is-narrow">
 						{Auth.isUserAuthenticated() ? (

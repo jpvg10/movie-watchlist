@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 // Authentication module
 import Auth from '../../auth';
 
-class Search extends React.Component {
+class Search extends React.PureComponent {
 	// Custom methods
 	onSearch(name) {
 		let results = [{ name: name }];

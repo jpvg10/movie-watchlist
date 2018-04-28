@@ -4,7 +4,7 @@ import { signup } from '../../api/authentication';
 //Component requires
 import UserForm from '../shared/user-form';
 
-class Register extends React.Component {
+class Register extends React.PureComponent {
 	// Custom methods
 	onSubmit(email, password) {
 		let re = /\S+@\S+\.\S+/;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Page404 extends React.Component {
+class Page404 extends React.PureComponent {
 	render() {
 		return(
 			<div>

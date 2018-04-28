@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 // Authentication module
 import Auth from '../../auth';
 
-class Favorites extends React.Component {
+class Favorites extends React.PureComponent {
 	// Custom methods
 	onEditFavorite(item, newRating) {
 		const { editFavorite } = this.props;

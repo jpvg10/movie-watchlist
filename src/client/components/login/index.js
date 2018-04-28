@@ -7,7 +7,7 @@ import UserForm from '../shared/user-form';
 // Authentication module
 import Auth from '../../auth';
 
-class Login extends React.Component {
+class Login extends React.PureComponent {
 	// Custom methods
 	onSubmit(email, password) {
 		login({ email, password })

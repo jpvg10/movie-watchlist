@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //Component requires
 import Item from './item';
 
-class TableComponent extends React.Component {	
+class TableComponent extends React.PureComponent {	
 	render() {
 		const { favorites, onEditFavorite, onDeleteFavorite } = this.props;
 		

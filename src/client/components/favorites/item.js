@@ -3,7 +3,7 @@ import React from 'react';
 //Component requires
 import ReactStars from 'react-stars'
 
-class Item extends React.Component {
+class Item extends React.PureComponent {
 	// Custom methods
 	handleDelete() {
 		const { name, onDelete } = this.props;

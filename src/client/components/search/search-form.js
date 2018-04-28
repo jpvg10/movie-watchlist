@@ -1,15 +1,25 @@
 import React from 'react';
 
-class SearchForm extends React.Component {
+class SearchForm extends React.PureComponent {
 	// Custom methods
+	onChangeTitle(e) {
+		this.setState({
+			title: e.target.value
+		});
+	}
+
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.onSearch(this.refs.title.value);
+		this.props.onSearch(this.state.title);
 	}
 
 	// Component methods
 	constructor(props) {
 		super(props);
+		this.state = {
+			title: ''
+		};
+		this.onChangeTitle = this.onChangeTitle.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
@@ -18,7 +28,7 @@ class SearchForm extends React.Component {
 			<form onSubmit={this.handleSubmit}>
 			 	<div className="field has-addons">
 					<div className="control is-expanded">
-						<input className="input" type="text" placeholder="Name of the movie" ref="title" />
+						<input className="input" type="text" placeholder="Name of the movie" value={this.state.title} onChange={this.onChangeTitle} />
 					</div>
 					<div className="control">
 						<input className="button is-info" type="submit" value="Search" />
