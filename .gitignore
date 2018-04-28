@@ -60,6 +60,3 @@ typings/
 
 # Webpack bundle
 dist/js/bundle.js
-
-# Package lock
-package-lock.json
