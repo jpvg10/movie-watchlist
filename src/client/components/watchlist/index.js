@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //Component requires
 import TableComponent from './table-component';
@@ -79,6 +80,18 @@ class Watchlist extends React.PureComponent {
 			</div>
 		);
 	}
+};
+
+Watchlist.propTypes = {
+	watchlistItems: PropTypes.array.isRequired,
+	getWatchlistItems: PropTypes.func.isRequired,
+	moveWatchlistItem: PropTypes.func.isRequired,
+	deleteWatchlistItem: PropTypes.func.isRequired,
+	getStatus: PropTypes.string.isRequired,
+	moveStatus: PropTypes.string.isRequired,
+	deleteStatus: PropTypes.string.isRequired,
+	resetMoveWatchlistItemStatus: PropTypes.func.isRequired,
+	resetDeleteWatchlistItemStatus: PropTypes.func.isRequired
 };
 
 export default Watchlist;

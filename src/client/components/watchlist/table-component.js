@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Component requires
 import Item from './item';
@@ -32,7 +33,7 @@ class TableComponent extends React.PureComponent {
 	}	
 };
 
-export default styled(TableComponent).attrs({
+const StyledTableComponent = styled(TableComponent).attrs({
 	className: 'table is-fullwidth is-hoverable'
 })`
 	@media (max-width: 768px) {
@@ -77,3 +78,11 @@ export default styled(TableComponent).attrs({
 		}
 	}
 `;
+
+StyledTableComponent.propTypes = {
+	watchlistItems: PropTypes.array.isRequired,
+	onDeleteWatchlistItem: PropTypes.func.isRequired,
+	onMoveWatchlistItem: PropTypes.func.isRequired
+};
+
+export default StyledTableComponent;

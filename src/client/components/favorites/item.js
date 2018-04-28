@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //Component requires
 import ReactStars from 'react-stars'
@@ -44,6 +45,13 @@ class Item extends React.PureComponent {
 			</tr>
 		);
 	}
+};
+
+Item.propTypes = {
+	name: PropTypes.string.isRequired,
+	stars: PropTypes.number,
+	onEdit: PropTypes.func.isRequired,
+	onDelete: PropTypes.func.isRequired
 };
 
 export default Item;

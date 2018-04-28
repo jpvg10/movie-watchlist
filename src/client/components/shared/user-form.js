@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class UserForm extends React.PureComponent {
 	// Custom methods
@@ -72,6 +73,13 @@ class UserForm extends React.PureComponent {
 			</div>
 		);
 	}
+};
+
+UserForm.propTypes = {
+	title: PropTypes.string.isRequired,
+	message: PropTypes.string.isRequired,
+	success: PropTypes.bool.isRequired,
+	onSubmit: PropTypes.func.isRequired
 };
 
 export default UserForm;

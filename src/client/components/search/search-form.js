@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchForm extends React.PureComponent {
 	// Custom methods
@@ -37,6 +38,10 @@ class SearchForm extends React.PureComponent {
 		 	</form>
 		);
 	}
-}
+};
+
+SearchForm.propTypes = {
+	onSearch: PropTypes.func.isRequired
+};
 
 export default SearchForm;

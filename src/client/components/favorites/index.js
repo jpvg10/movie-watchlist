@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //Component requires
 import TableComponent from './table-component';
@@ -79,6 +80,18 @@ class Favorites extends React.PureComponent {
 			</div>
 		);
 	}
+};
+
+Favorites.propTypes = {
+	favorites: PropTypes.array.isRequired,
+	getFavorites: PropTypes.func.isRequired,
+	editFavorite: PropTypes.func.isRequired,
+	deleteFavorite: PropTypes.func.isRequired,
+	getStatus: PropTypes.string.isRequired,
+	editStatus: PropTypes.string.isRequired,
+	deleteStatus: PropTypes.string.isRequired,
+	resetEditFavoriteStatus: PropTypes.func.isRequired,
+	resetDeleteFavoriteStatus: PropTypes.func.isRequired
 };
 
 export default Favorites;

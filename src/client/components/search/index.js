@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Component requires
 import SearchForm from './search-form';
@@ -63,7 +64,6 @@ class Search extends React.PureComponent {
 	}
 
 	render() {
-		const { addWatchlistItem, addFavorite } = this.props;
 		let results = this.state.results;
 		results = results.map((item, index) => {
 			return(
@@ -72,7 +72,7 @@ class Search extends React.PureComponent {
 					name={item.name}
 					director={item.director}
 					year={item.year}
-					onAddFavorite={this.onAddFavorite}				
+					onAddFavorite={this.onAddFavorite}
 					onAddWatchlistItem={this.onAddWatchlistItem}
 				/>
 			);
@@ -101,6 +101,15 @@ class Search extends React.PureComponent {
 			</div>
 		);
 	}
+};
+
+Search.propTypes = {
+	addWatchlistItem: PropTypes.func.isRequired,
+	addWatchlistItemStatus: PropTypes.string.isRequired,
+	resetAddWatchlistItemStatus: PropTypes.func.isRequired,
+	addFavorite: PropTypes.func.isRequired,
+	addFavoriteStatus: PropTypes.string.isRequired,
+	resetAddFavoriteStatus: PropTypes.func.isRequired
 };
 
 export default Search;

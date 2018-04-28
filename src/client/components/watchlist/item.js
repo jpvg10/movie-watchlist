@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Item extends React.PureComponent {
 	// Custom methods
@@ -34,6 +35,12 @@ class Item extends React.PureComponent {
 			</tr>
 		);
 	}
+};
+
+Item.propTypes = {
+	name: PropTypes.string.isRequired,
+	onMove: PropTypes.func.isRequired,
+	onDelete: PropTypes.func.isRequired
 };
 
 export default Item;
