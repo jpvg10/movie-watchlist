@@ -19,11 +19,11 @@ class Item extends React.Component {
 		});
 	}
 
-	// Component methods	
+	// Component methods
 	constructor(props) {
 		super(props);
 		this.state = {
-			stars: this.props.stars
+			stars: props.stars
 		};
 		this.handleDelete = this.handleDelete.bind(this);
 		this.ratingChanged = this.ratingChanged.bind(this);
@@ -31,7 +31,7 @@ class Item extends React.Component {
 
 	render() {
 		return(
-			<tr>				
+			<tr>
 				<td>{this.props.name}</td>
 				<td>-</td>
 				<td>-</td>
@@ -40,7 +40,7 @@ class Item extends React.Component {
 				</td>
 				<td>
 					<button className="button is-danger is-outlined" onClick={this.handleDelete}><i className="fa fa-times"></i></button>
-				</td>				
+				</td>
 			</tr>
 		);
 	}

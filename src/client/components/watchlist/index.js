@@ -22,19 +22,16 @@ class Watchlist extends React.Component {
 	// Component methods
 	constructor(props) {
 		super(props);
-		this.onDeleteWatchlistItem = this.onDeleteWatchlistItem.bind(this);		
-		this.onMoveWatchlistItem = this.onMoveWatchlistItem.bind(this);		
-	}
-
-	componentWillMount() {
-		if(!Auth.isUserAuthenticated()){
-			this.props.history.push('/');
-		}
-	}
+		this.onDeleteWatchlistItem = this.onDeleteWatchlistItem.bind(this);
+		this.onMoveWatchlistItem = this.onMoveWatchlistItem.bind(this);
+	}	
 
 	componentDidMount() {
-		const { getWatchlistItems } = this.props;
-		getWatchlistItems();
+		if(!Auth.isUserAuthenticated()){
+			this.props.history.push('/');
+		}else{
+			this.props.getWatchlistItems();
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -73,7 +70,7 @@ class Watchlist extends React.Component {
 						<h1 className="title">These are the movies you have yet to watch:</h1>
 					</div>
 				</article>
-			 	
+
 			 	<TableComponent 
 					watchlistItems={watchlistItems} 
 					onDeleteWatchlistItem={this.onDeleteWatchlistItem}

@@ -56,12 +56,12 @@ class Search extends React.Component {
 		}
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		if(!Auth.isUserAuthenticated()){
 			this.props.history.push('/');
 		}
 	}
-	
+
 	render() {
 		const { addWatchlistItem, addFavorite } = this.props;
 		let results = this.state.results;
@@ -90,9 +90,9 @@ class Search extends React.Component {
 						<h1 className="title">Search for movies</h1>
 					</div>
 				</article>
-								
+
 				<SearchForm onSearch={this.onSearch} />
-				
+
 				<div className="section">
 					<ul>
 						{results}

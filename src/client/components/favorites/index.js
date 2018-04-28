@@ -26,20 +26,17 @@ class Favorites extends React.Component {
 		this.onDeleteFavorite = this.onDeleteFavorite.bind(this);
 	}
 
-	componentWillMount() {
+	componentDidMount() {		
 		if(!Auth.isUserAuthenticated()){
 			this.props.history.push('/');
-		}
-	}
-
-	componentDidMount() {
-		const { getFavorites } = this.props;
-		getFavorites();
+		}else{			
+			this.props.getFavorites();
+		}		
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const { getStatus, editStatus, deleteStatus, resetEditFavoriteStatus, resetDeleteFavoriteStatus } = nextProps;
-		
+
 		if(getStatus === 'failed'){
 			toast.error('Oops! Can\'t retrieve your favorite movies. Try again later.');
 		}
@@ -73,7 +70,7 @@ class Favorites extends React.Component {
 						<h1 className="title">These are your favorite movies:</h1>
 					</div>
 				</article>
-			 	
+
 			 	<TableComponent
 					favorites={favorites} 
 					onEditFavorite={this.onEditFavorite} 
