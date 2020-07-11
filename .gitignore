@@ -57,6 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 
-
-# Webpack bundle
-dist/js/bundle.js
+src/client2
