@@ -2,6 +2,7 @@ import path from 'path';
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import routes from './routes';
 
 const app = express();
 
@@ -13,7 +14,8 @@ if (process.env.NODE_ENV !== 'production') {
 // mongoose
 mongoose.connect(process.env.MONGODB_URI as string, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 // parsers
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')));
 // app.use('/api', require('./middleware/auth-check'));
 
 // routes
-// app.use('/api', require('./routes'));
+app.use('/api', routes);
 
 // error handling
 app.use((err: Error, req: Request, res: Response) => {
@@ -34,7 +36,7 @@ app.use((err: Error, req: Request, res: Response) => {
   res.status(500).send({ Error: err.message });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
