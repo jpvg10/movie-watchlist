@@ -12,12 +12,20 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // mongoose
-mongoose.connect(process.env.MONGODB_URI as string, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
+mongoose
+  .connect(process.env.MONGODB_URI as string, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  })
+  .then(() => {
+    console.log('Database connected');
+  })
+  .catch((error) => {
+    console.log('Database connection failed');
+    console.log(error);
+  });
 
 // parsers
 app.use(express.json());
