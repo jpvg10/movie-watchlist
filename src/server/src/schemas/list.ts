@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import { IListDocument } from '../interfaces';
 
-const ListSchema = new mongoose.Schema({
+const ListSchema = new mongoose.Schema<IListDocument>({
   _user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

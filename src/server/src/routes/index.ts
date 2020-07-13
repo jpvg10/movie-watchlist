@@ -1,6 +1,7 @@
 import express from 'express';
-import { getWatchlist, addToWatchlist, removeFromWatchlist } from '../controllers/watchlist';
-import { getFavorites, addFavorite, editFavorite, removeFavorite } from '../controllers/favorites';
+import watchlistRouter from './watchlist';
+import favoritesRouter from './favorites';
+import userRouter from './user';
 
 const router = express.Router();
 
@@ -10,13 +11,8 @@ router.get('/', (_req, res) => {
   });
 });
 
-router.get('/watchlist', getWatchlist);
-router.post('/watchlist', addToWatchlist);
-router.delete('/watchlist', removeFromWatchlist);
-
-router.get('/favorites', getFavorites);
-router.post('/favorites', addFavorite);
-router.patch('/favorites', editFavorite);
-router.delete('/favorites', removeFavorite);
+router.use(watchlistRouter);
+router.use(favoritesRouter);
+router.use(userRouter);
 
 export default router;
