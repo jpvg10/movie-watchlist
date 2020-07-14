@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from '../Home';
-import Navbar from '../Navbar';
-import Login from '../Login';
-import Signup from '../Signup';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 const App: React.FC = () => {
   return (
