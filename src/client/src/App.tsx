@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import AuthContext from './utils/authContext';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import { IAuthContext } from './utils/interfaces';
+import { getTokenData } from './utils/tokenHelper';
 
 const App: React.FC = () => {
+  const tokenData = getTokenData();
+
+  const [isAuthenticated, setIsAuthenticated] = useState(tokenData !== null);
+
+  const contextValue: IAuthContext = {
+    isAuthenticated,
+    setIsAuthenticated
+  };
+
   return (
-    <React.Fragment>
+    <AuthContext.Provider value={contextValue}>
       <Navbar />
       <div className="container mx-auto px-4">
         <Switch>
@@ -17,7 +29,7 @@ const App: React.FC = () => {
         </Switch>
       </div>
       {/* <Footer /> */}
-    </React.Fragment>
+    </AuthContext.Provider>
   );
 };
 
