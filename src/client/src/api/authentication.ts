@@ -29,7 +29,7 @@ export const login = async (email: string, password: string): Promise<IToken> =>
 };
 
 export const logout = async (): Promise<void> => {
-  await axios.request<IToken>({
+  await axios.request<void>({
     method: 'post',
     url: '/api/users/logout',
     headers: { Authorization: `Bearer ${getTokenData()?.token}` }

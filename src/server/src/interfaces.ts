@@ -16,7 +16,6 @@ export interface IMovie {
 }
 
 export interface IFavoriteMovie extends IMovie {
-  name: string;
   stars?: number;
 }
 

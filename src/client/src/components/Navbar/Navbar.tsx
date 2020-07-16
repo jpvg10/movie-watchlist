@@ -25,6 +25,12 @@ const Navbar: React.FC = () => {
         </h4>
         {auth?.isAuthenticated && (
           <div>
+            <Link to="/watchlist" className="mr-4">
+              Watchlist
+            </Link>
+            <Link to="/favorites" className="mr-4">
+              Favorites
+            </Link>
             <button onClick={onLogout}>Logout</button>
           </div>
         )}

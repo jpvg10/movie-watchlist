@@ -5,6 +5,8 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Watchlist from './components/Watchlist';
+import Favorites from './components/Favorites';
 import { IAuthContext } from './utils/interfaces';
 import { getTokenData } from './utils/tokenHelper';
 
@@ -26,6 +28,8 @@ const App: React.FC = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route path="/watchlist" exact component={Watchlist} />
+          <Route path="/favorites" exact component={Favorites} />
         </Switch>
       </div>
       {/* <Footer /> */}
