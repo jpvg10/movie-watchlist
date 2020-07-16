@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import AuthContext from './utils/authContext';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
@@ -28,8 +28,8 @@ const App: React.FC = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/watchlist" exact component={Watchlist} />
-          <Route path="/favorites" exact component={Favorites} />
+          <Route path="/watchlist" exact render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)} />
+          <Route path="/favorites" exact render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)} />
         </Switch>
       </div>
       {/* <Footer /> */}
