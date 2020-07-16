@@ -3,6 +3,7 @@ import { IMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import { getWatchlist, addToWatchlist } from '../../api/watchlist';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
+import seat from './seat.png';
 
 const Watchlist: React.FC = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -33,7 +34,9 @@ const Watchlist: React.FC = () => {
   return (
     <React.Fragment>
       <h1>Watchlist</h1>
+      <img src={seat} alt="seat" />
       <AddMovieForm onSubmit={onSubmit} />
+      <h2>These are the movies you have yet to watch:</h2>
       {movies.map((movie: IMovie) => (
         <p key={movie._id}>{movie.name}</p>
       ))}

@@ -3,6 +3,7 @@ import { IMovie, IFavoriteMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import { getFavorites, addToFavorites } from '../../api/favorites';
+import shootingStar from './shooting-star.png';
 
 const Favorites: React.FC = () => {
   const [movies, setMovies] = useState<IFavoriteMovie[]>([]);
@@ -33,7 +34,9 @@ const Favorites: React.FC = () => {
   return (
     <React.Fragment>
       <h1>Favorites</h1>
+      <img src={shootingStar} alt="shooting star" />
       <AddMovieForm onSubmit={onSubmit} />
+      <h2>These are your favorite movies:</h2>
       {movies.map((movie: IFavoriteMovie) => (
         <p key={movie._id}>{movie.name}</p>
       ))}
