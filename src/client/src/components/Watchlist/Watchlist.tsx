@@ -34,8 +34,8 @@ const Watchlist: React.FC = () => {
     <React.Fragment>
       <h1>Watchlist</h1>
       <AddMovieForm onSubmit={onSubmit} />
-      {movies.map((movie: IMovie, index: number) => (
-        <p key={index}>{movie.name}</p>
+      {movies.map((movie: IMovie) => (
+        <p key={movie._id}>{movie.name}</p>
       ))}
     </React.Fragment>
   );

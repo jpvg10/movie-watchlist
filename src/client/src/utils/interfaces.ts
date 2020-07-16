@@ -9,6 +9,7 @@ export interface IToken {
 }
 
 export interface IMovie {
+  _id?: string;
   name: string;
 }
 

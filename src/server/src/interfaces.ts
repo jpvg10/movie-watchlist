@@ -12,6 +12,7 @@ export interface IUser extends IUserDocument {
 }
 
 export interface IMovie {
+  _id?: string;
   name: string;
 }
 

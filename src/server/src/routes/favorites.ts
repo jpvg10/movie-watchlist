@@ -34,7 +34,7 @@ router.post('/favorites', auth, async (req, res) => {
   }
 });
 
-router.patch('/favorites', auth, async (req, res) => {
+router.patch('/favorites/:id', auth, async (req, res) => {
   try {
     const movieData: IFavoriteMovie = {
       name: req.body.name as string,
@@ -44,9 +44,10 @@ router.patch('/favorites', auth, async (req, res) => {
     const list = await List.findOne({ _user: req.user._id });
     if (!list) return res.status(404).send();
 
-    const movie = list.favorites.find((movie: IFavoriteMovie) => movie.name === movieData.name);
+    const movie = list.favorites.find((movie: IFavoriteMovie) => movie._id === req.params.id);
     if (!movie) return res.status(404).send();
 
+    movie.name = movieData.name;
     movie.stars = movieData.stars;
     await list.save();
 
@@ -56,15 +57,11 @@ router.patch('/favorites', auth, async (req, res) => {
   }
 });
 
-router.delete('/favorites', auth, async (req, res) => {
+router.delete('/favorites/:id', auth, async (req, res) => {
   try {
-    const movieData: IFavoriteMovie = {
-      name: req.body.name as string
-    };
-
     const list = await List.findOneAndUpdate(
       { _user: req.user._id },
-      { $pull: { favorites: movieData } },
+      { $pull: { favorites: { _id: req.params.id } } },
       { new: true }
     );
     if (!list) return res.status(404).send();

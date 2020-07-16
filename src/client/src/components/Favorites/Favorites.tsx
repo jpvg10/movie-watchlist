@@ -34,8 +34,8 @@ const Favorites: React.FC = () => {
     <React.Fragment>
       <h1>Favorites</h1>
       <AddMovieForm onSubmit={onSubmit} />
-      {movies.map((movie: IFavoriteMovie, index: number) => (
-        <p key={index}>{movie.name}</p>
+      {movies.map((movie: IFavoriteMovie) => (
+        <p key={movie._id}>{movie.name}</p>
       ))}
     </React.Fragment>
   );
