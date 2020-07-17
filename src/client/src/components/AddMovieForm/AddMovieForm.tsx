@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import Input from '../Common/Input';
+import SubmitButton from '../Common/SubmitButton';
 
 interface IProps {
+  label: string;
+  buttonLabel: string;
   onSubmit(name: string): Promise<void>;
 }
 
-const AddMovieForm: React.FC<IProps> = ({ onSubmit }) => {
+const AddMovieForm: React.FC<IProps> = ({ label, buttonLabel, onSubmit }) => {
   const [name, setName] = useState('');
 
   const submit = (e: React.FormEvent) => {
@@ -17,26 +21,19 @@ const AddMovieForm: React.FC<IProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={submit}>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
-          Name
-        </label>
-        <input
-          id="name"
-          className="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mb-4"
-          type="text"
-          placeholder="Name"
+    <form onSubmit={submit} className="flex items-end">
+      <div className="w-4/12 mr-4">
+        <Input
+          label={label}
+          id="movie-name"
+          placeholder="Name of the movie"
           value={name}
           onChange={onChangeName}
-        ></input>
+        />
       </div>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
-      >
-        Add movie
-      </button>
+      <div className="">
+        <SubmitButton label={buttonLabel} />
+      </div>
     </form>
   );
 };

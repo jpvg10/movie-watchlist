@@ -28,8 +28,16 @@ const App: React.FC = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/watchlist" exact render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)} />
-          <Route path="/favorites" exact render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)} />
+          <Route
+            path="/watchlist"
+            exact
+            render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)}
+          />
+          <Route
+            path="/favorites"
+            exact
+            render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)}
+          />
         </Switch>
       </div>
       {/* <Footer /> */}

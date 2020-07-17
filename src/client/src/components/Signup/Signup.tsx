@@ -23,7 +23,7 @@ const Signup: React.FC = () => {
   return (
     <React.Fragment>
       <h1>Signup</h1>
-      <UserForm isLogin={false} onSubmit={onSubmit} />
+      <UserForm buttonLabel="Sign up" onSubmit={onSubmit} />
     </React.Fragment>
   );
 };

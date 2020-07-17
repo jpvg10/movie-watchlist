@@ -34,8 +34,12 @@ const Watchlist: React.FC = () => {
   return (
     <React.Fragment>
       <h1>Watchlist</h1>
-      <img src={seat} alt="seat" />
-      <AddMovieForm onSubmit={onSubmit} />
+      <img src={seat} alt="seat" className="w-16" />
+      <AddMovieForm
+        label="Add a movie to your watchlist"
+        buttonLabel="Add to watchlist"
+        onSubmit={onSubmit}
+      />
       <h2>These are the movies you have yet to watch:</h2>
       {movies.map((movie: IMovie) => (
         <p key={movie._id}>{movie.name}</p>

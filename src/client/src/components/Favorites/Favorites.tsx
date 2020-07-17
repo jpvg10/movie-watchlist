@@ -34,8 +34,12 @@ const Favorites: React.FC = () => {
   return (
     <React.Fragment>
       <h1>Favorites</h1>
-      <img src={shootingStar} alt="shooting star" />
-      <AddMovieForm onSubmit={onSubmit} />
+      <img src={shootingStar} alt="shooting star" className="w-16" />
+      <AddMovieForm
+        label="Add a movie to your favorites"
+        buttonLabel="Add to favorites"
+        onSubmit={onSubmit}
+      />
       <h2>These are your favorite movies:</h2>
       {movies.map((movie: IFavoriteMovie) => (
         <p key={movie._id}>{movie.name}</p>
