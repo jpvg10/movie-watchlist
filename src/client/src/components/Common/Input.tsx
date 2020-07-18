@@ -17,7 +17,7 @@ const Input: React.FC<IProps> = ({ label, id, placeholder, value, onChange, type
       </label>
       <input
         id={id}
-        className="focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mb-4"
+        className="focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full mb-4"
         autoComplete="off"
         type={type}
         placeholder={placeholder}

@@ -16,15 +16,15 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav>
+    <nav className="bg-yellow-400 py-4 mb-4">
       <div className="container mx-auto px-4 flex justify-between">
-        <h4>
+        <h2>
           <Link to="/" className="mr-4">
             Movie watchlist
           </Link>
-        </h4>
+        </h2>
         {auth?.isAuthenticated && (
-          <div>
+          <div className="flex items-center">
             <Link to="/watchlist" className="mr-4">
               Watchlist
             </Link>
