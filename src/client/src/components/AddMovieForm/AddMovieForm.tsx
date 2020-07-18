@@ -14,6 +14,7 @@ const AddMovieForm: React.FC<IProps> = ({ label, buttonLabel, onSubmit }) => {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(name);
+    setName('');
   };
 
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {

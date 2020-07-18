@@ -1,14 +1,14 @@
 import express from 'express';
-import List from '../models/list';
-import { IFavoriteMovie } from '../interfaces';
+import Movie from '../models/movie';
+import { IMovie } from '../interfaces';
 import auth from '../middleware/auth';
 
 const router = express.Router();
 
 router.get('/favorites', auth, async (req, res) => {
   try {
-    const list = await List.findOne({ _user: req.user._id });
-    res.status(200).send(list?.favorites ?? []);
+    const favorites = await Movie.find({ _user: req.user._id, isFavorite: true });
+    res.status(200).send(favorites);
   } catch (e) {
     res.status(500).send();
   }
@@ -16,19 +16,16 @@ router.get('/favorites', auth, async (req, res) => {
 
 router.post('/favorites', auth, async (req, res) => {
   try {
-    const movieData: IFavoriteMovie = {
-      name: req.body.name as string
+    const movieData: IMovie = {
+      name: req.body.name as string,
+      _user: req.user._id,
+      isFavorite: true
     };
 
-    let list = await List.findOne({ _user: req.user._id });
-    if (!list) {
-      list = new List({ _user: req.user._id });
-    }
+    const movie = new Movie(movieData);
+    await movie.save();
 
-    list.favorites.push(movieData);
-    await list.save();
-
-    res.status(200).send(list.favorites);
+    res.status(200).send(movie);
   } catch (e) {
     res.status(500).send();
   }
@@ -36,22 +33,17 @@ router.post('/favorites', auth, async (req, res) => {
 
 router.patch('/favorites/:id', auth, async (req, res) => {
   try {
-    const movieData: IFavoriteMovie = {
-      name: req.body.name as string,
-      stars: req.body.stars as number
-    };
+    const { name, stars } = req.body;
 
-    const list = await List.findOne({ _user: req.user._id });
-    if (!list) return res.status(404).send();
+    const updateData = {} as any;
+    if (name) updateData.name = name;
+    if (stars) updateData.stars = stars;
 
-    const movie = list.favorites.find((movie: IFavoriteMovie) => movie._id === req.params.id);
+    const movie = await Movie.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
     if (!movie) return res.status(404).send();
 
-    movie.name = movieData.name;
-    movie.stars = movieData.stars;
-    await list.save();
-
-    res.status(200).send(list.favorites);
+    res.status(200).send(movie);
   } catch (e) {
     res.status(500).send();
   }
@@ -59,14 +51,10 @@ router.patch('/favorites/:id', auth, async (req, res) => {
 
 router.delete('/favorites/:id', auth, async (req, res) => {
   try {
-    const list = await List.findOneAndUpdate(
-      { _user: req.user._id },
-      { $pull: { favorites: { _id: req.params.id } } },
-      { new: true }
-    );
-    if (!list) return res.status(404).send();
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    if (!movie) return res.status(404).send();
 
-    res.status(200).send(list?.favorites);
+    res.status(200).send();
   } catch (e) {
     res.status(500).send();
   }

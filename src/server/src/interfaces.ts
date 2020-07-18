@@ -12,19 +12,13 @@ export interface IUser extends IUserDocument {
 }
 
 export interface IMovie {
-  _id?: string;
   name: string;
-}
-
-export interface IFavoriteMovie extends IMovie {
   stars?: number;
+  isFavorite: boolean;
+  _user: Types.ObjectId;
 }
 
-export interface IListDocument extends Document {
-  _user: Types.ObjectId;
-  watchlist: IMovie[];
-  favorites: IFavoriteMovie[];
-}
+export interface IMovieDocument extends Document {}
 
 export interface IPayload {
   _id: string;

@@ -1,14 +1,14 @@
 import express from 'express';
-import List from '../models/list';
-import auth from '../middleware/auth';
+import Movie from '../models/movie';
 import { IMovie } from '../interfaces';
+import auth from '../middleware/auth';
 
 const router = express.Router();
 
 router.get('/watchlist', auth, async (req, res) => {
   try {
-    const list = await List.findOne({ _user: req.user._id });
-    res.status(200).send(list?.watchlist ?? []);
+    const watchlist = await Movie.find({ _user: req.user._id, isFavorite: false });
+    res.status(200).send(watchlist);
   } catch (e) {
     res.status(500).send();
   }
@@ -17,39 +17,33 @@ router.get('/watchlist', auth, async (req, res) => {
 router.post('/watchlist', auth, async (req, res) => {
   try {
     const movieData: IMovie = {
-      name: req.body.name as string
+      name: req.body.name as string,
+      _user: req.user._id,
+      isFavorite: false
     };
 
-    let list = await List.findOne({ _user: req.user._id });
-    if (!list) {
-      list = new List({ _user: req.user._id });
-    }
+    const movie = new Movie(movieData);
+    await movie.save();
 
-    list.watchlist.push(movieData);
-    await list.save();
-
-    res.status(200).send(list.watchlist);
+    res.status(200).send(movie);
   } catch (e) {
     res.status(500).send();
   }
 });
 
-router.patch('/favorites/:id', auth, async (req, res) => {
+router.patch('/watchlist/:id', auth, async (req, res) => {
   try {
-    const movieData: IMovie = {
-      name: req.body.name as string
-    };
+    const { name, isFavorite } = req.body;
 
-    const list = await List.findOne({ _user: req.user._id });
-    if (!list) return res.status(404).send();
+    const updateData = {} as any;
+    if (name) updateData.name = name;
+    if (isFavorite) updateData.isFavorite = isFavorite;
 
-    const movie = list.watchlist.find((movie: IMovie) => movie._id === req.params.id);
+    const movie = await Movie.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
     if (!movie) return res.status(404).send();
 
-    movie.name = movieData.name;
-    await list.save();
-
-    res.status(200).send(list.favorites);
+    res.status(200).send(movie);
   } catch (e) {
     res.status(500).send();
   }
@@ -57,14 +51,10 @@ router.patch('/favorites/:id', auth, async (req, res) => {
 
 router.delete('/watchlist/:id', auth, async (req, res) => {
   try {
-    const list = await List.findOneAndUpdate(
-      { _user: req.user._id },
-      { $pull: { watchlist: { _id: req.params.id } } },
-      { new: true }
-    );
-    if (!list) return res.status(404).send();
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    if (!movie) return res.status(404).send();
 
-    res.status(200).send(list?.watchlist);
+    res.status(200).send();
   } catch (e) {
     res.status(500).send();
   }
