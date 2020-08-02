@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-yellow-400 py-4 mb-4">
+    <nav className="bg-yellow-400 py-4 fixed w-full">
       <div className="container mx-auto px-4 flex justify-between">
         <h2 className="m-0">
           <Link to="/">Movie watchlist</Link>

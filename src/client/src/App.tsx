@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Watchlist from './components/Watchlist';
 import Favorites from './components/Favorites';
+import Footer from './components/Footer';
 import { IAuthContext } from './utils/interfaces';
 import { getTokenData } from './utils/tokenHelper';
 
@@ -23,24 +24,26 @@ const App: React.FC = () => {
   return (
     <AuthContext.Provider value={contextValue}>
       <Navbar />
-      <div className="container mx-auto px-4">
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route
-            path="/watchlist"
-            exact
-            render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)}
-          />
-          <Route
-            path="/favorites"
-            exact
-            render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)}
-          />
-        </Switch>
+      <div className="flex flex-col h-screen">
+        <div className="container mx-auto mb-4 px-4 pt-24 sm:pt-20 flex-grow">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route
+              path="/watchlist"
+              exact
+              render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)}
+            />
+            <Route
+              path="/favorites"
+              exact
+              render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)}
+            />
+          </Switch>
+        </div>
+        <Footer />
       </div>
-      {/* <Footer /> */}
     </AuthContext.Provider>
   );
 };
