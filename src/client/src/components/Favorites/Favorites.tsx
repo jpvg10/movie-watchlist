@@ -3,7 +3,12 @@ import { FaTimes } from 'react-icons/fa';
 import { IMovie, IFavoriteMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
-import { getFavorites, addToFavorites } from '../../api/favorites';
+import {
+  getFavorites,
+  addToFavorites,
+  deleteFromFavorites,
+  patchFavorite
+} from '../../api/favorites';
 import shootingStar from './shooting-star.png';
 import IconButton from '../Common/IconButton';
 import Stars from '../Common/Stars';
@@ -34,8 +39,25 @@ const Favorites: React.FC = () => {
     } catch (e) {}
   };
 
-  const onChangeRating = (value: number) => () => {
-    console.log(value);
+  const onChangeRating = (id: string) => async (newValue: number) => {
+    try {
+      const updatedMovie = await patchFavorite(id, newValue);
+      const newMovies = movies.map((movie: IFavoriteMovie) => {
+        if (movie._id === updatedMovie._id) {
+          return { ...movie, stars: updatedMovie.stars };
+        }
+        return movie;
+      });
+      setMovies(newMovies);
+    } catch (e) {}
+  };
+
+  const onDelete = (id: string) => async () => {
+    try {
+      await deleteFromFavorites(id);
+      const newMovies = movies.filter((movie: IFavoriteMovie) => movie._id !== id);
+      setMovies(newMovies);
+    } catch (e) {}
   };
 
   return (
@@ -67,10 +89,10 @@ const Favorites: React.FC = () => {
             <tr key={movie._id}>
               <td>{movie.name}</td>
               <td>
-                <Stars value={2} onChange={onChangeRating} />
+                <Stars value={movie.stars} onChange={onChangeRating(movie._id as string)} />
               </td>
               <td>
-                <IconButton color="red" onClick={() => {}}>
+                <IconButton color="red" onClick={onDelete(movie._id as string)}>
                   <FaTimes />
                 </IconButton>
               </td>

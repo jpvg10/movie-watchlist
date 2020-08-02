@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { FaHeart, FaTimes } from 'react-icons/fa';
 import { IMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
-import { getWatchlist, addToWatchlist } from '../../api/watchlist';
+import {
+  getWatchlist,
+  addToWatchlist,
+  deleteFromWatchlist,
+  moveToFavorites
+} from '../../api/watchlist';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import IconButton from '../Common/IconButton';
 import seat from './seat.png';
@@ -30,6 +35,22 @@ const Watchlist: React.FC = () => {
       const movieData: IMovie = { name };
       const movie = await addToWatchlist(movieData);
       setMovies([...movies, movie]);
+    } catch (e) {}
+  };
+
+  const onMoveToFavorites = (id: string) => async () => {
+    try {
+      await moveToFavorites(id);
+      const newMovies = movies.filter((movie: IMovie) => movie._id !== id);
+      setMovies(newMovies);
+    } catch (e) {}
+  };
+
+  const onDelete = (id: string) => async () => {
+    try {
+      await deleteFromWatchlist(id);
+      const newMovies = movies.filter((movie: IMovie) => movie._id !== id);
+      setMovies(newMovies);
     } catch (e) {}
   };
 
@@ -63,12 +84,12 @@ const Watchlist: React.FC = () => {
             <tr key={movie._id}>
               <td>{movie.name}</td>
               <td>
-                <IconButton color="green" onClick={() => {}}>
+                <IconButton color="green" onClick={onMoveToFavorites(movie._id as string)}>
                   <FaHeart />
                 </IconButton>
               </td>
               <td>
-                <IconButton color="red" onClick={() => {}}>
+                <IconButton color="red" onClick={onDelete(movie._id as string)}>
                   <FaTimes />
                 </IconButton>
               </td>

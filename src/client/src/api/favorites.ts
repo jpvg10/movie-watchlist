@@ -20,3 +20,21 @@ export const addToFavorites = async (movie: IMovie): Promise<IFavoriteMovie> => 
   });
   return result.data;
 };
+
+export const patchFavorite = async (id: string, stars: number): Promise<IFavoriteMovie> => {
+  const result = await axios.request<IFavoriteMovie>({
+    method: 'patch',
+    url: `/api/favorites/${id}`,
+    headers: { Authorization: `Bearer ${getTokenData()?.token}` },
+    data: { stars }
+  });
+  return result.data;
+};
+
+export const deleteFromFavorites = async (id: string): Promise<void> => {
+  await axios.request({
+    method: 'delete',
+    url: `/api/favorites/${id}`,
+    headers: { Authorization: `Bearer ${getTokenData()?.token}` }
+  });
+};

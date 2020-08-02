@@ -7,7 +7,7 @@ interface IStarButtonProps {
 
 interface IStarsProps {
   value: number;
-  onChange(value: number): () => void;
+  onChange(newValue: number): void;
 }
 
 const StarButton: React.FC<IStarButtonProps> = ({ onClick, children }) => {
@@ -21,9 +21,13 @@ const StarButton: React.FC<IStarButtonProps> = ({ onClick, children }) => {
 const Stars: React.FC<IStarsProps> = ({ value, onChange }) => {
   const stars: React.ReactNode[] = [];
 
+  const onChangeRating = (newValue: number) => () => {
+    onChange(newValue);
+  };
+
   for (let i = 1; i <= value; i++) {
     stars.push(
-      <StarButton key={`star-${i}`} onClick={onChange(i)}>
+      <StarButton key={`star-${i}`} onClick={onChangeRating(i)}>
         <FaStar />
       </StarButton>
     );
@@ -31,7 +35,7 @@ const Stars: React.FC<IStarsProps> = ({ value, onChange }) => {
 
   for (let i = value + 1; i <= 5; i++) {
     stars.push(
-      <StarButton key={`star-${i}`} onClick={onChange(i)}>
+      <StarButton key={`star-${i}`} onClick={onChangeRating(i)}>
         <FaRegStar />
       </StarButton>
     );
