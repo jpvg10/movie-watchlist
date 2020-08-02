@@ -25,7 +25,7 @@ const UserForm: React.FC<IProps> = ({ buttonLabel, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className="w-full sm:w-1/2 md:w-4/12">
       <Input
         label="Email"
         id="email"

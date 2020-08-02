@@ -22,8 +22,8 @@ const AddMovieForm: React.FC<IProps> = ({ label, buttonLabel, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={submit} className="flex items-end">
-      <div className="w-4/12 mr-4">
+    <form onSubmit={submit} className="flex items-end flex-wrap">
+      <div className="w-full sm:w-5/12 lg:w-4/12 mr-4">
         <Input
           label={label}
           id="movie-name"
@@ -32,7 +32,7 @@ const AddMovieForm: React.FC<IProps> = ({ label, buttonLabel, onSubmit }) => {
           onChange={onChangeName}
         />
       </div>
-      <div className="">
+      <div className="w-full sm:w-5/12 lg:w-4/12">
         <SubmitButton label={buttonLabel} />
       </div>
     </form>
