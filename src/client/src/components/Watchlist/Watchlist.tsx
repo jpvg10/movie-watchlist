@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { FaHeart, FaTimes } from 'react-icons/fa';
 import { IMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import { getWatchlist, addToWatchlist } from '../../api/watchlist';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
+import IconButton from '../Common/IconButton';
 import seat from './seat.png';
 
 const Watchlist: React.FC = () => {
@@ -50,16 +52,26 @@ const Watchlist: React.FC = () => {
       <h2>These are the movies you have yet to watch:</h2>
       <table className="w-full">
         <thead className="font-bold">
-          <td>Name</td>
-          <td>Move to favorites</td>
-          <td>Delete</td>
+          <tr>
+            <th>Name</th>
+            <th>Move to favorites</th>
+            <th>Delete</th>
+          </tr>
         </thead>
         <tbody>
           {movies.map((movie: IMovie) => (
             <tr key={movie._id}>
               <td>{movie.name}</td>
-              <td></td>
-              <td></td>
+              <td>
+                <IconButton color="green" onClick={() => {}}>
+                  <FaHeart />
+                </IconButton>
+              </td>
+              <td>
+                <IconButton color="red" onClick={() => {}}>
+                  <FaTimes />
+                </IconButton>
+              </td>
             </tr>
           ))}
         </tbody>

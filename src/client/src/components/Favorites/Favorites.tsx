@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { FaTimes } from 'react-icons/fa';
 import { IMovie, IFavoriteMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import { getFavorites, addToFavorites } from '../../api/favorites';
 import shootingStar from './shooting-star.png';
+import IconButton from '../Common/IconButton';
+import Stars from '../Common/Stars';
 
 const Favorites: React.FC = () => {
   const [movies, setMovies] = useState<IFavoriteMovie[]>([]);
@@ -31,6 +34,10 @@ const Favorites: React.FC = () => {
     } catch (e) {}
   };
 
+  const onChangeRating = (value: number) => () => {
+    console.log(value);
+  };
+
   return (
     <React.Fragment>
       <h1>Favorites</h1>
@@ -49,16 +56,24 @@ const Favorites: React.FC = () => {
       <h2>These are your favorite movies:</h2>
       <table className="w-full">
         <thead className="font-bold">
-          <td>Name</td>
-          <td>Your rating</td>
-          <td>Remove</td>
+          <tr>
+            <th>Name</th>
+            <th>Your rating</th>
+            <th>Delete</th>
+          </tr>
         </thead>
         <tbody>
           {movies.map((movie: IFavoriteMovie) => (
             <tr key={movie._id}>
               <td>{movie.name}</td>
-              <td></td>
-              <td></td>
+              <td>
+                <Stars value={2} onChange={onChangeRating} />
+              </td>
+              <td>
+                <IconButton color="red" onClick={() => {}}>
+                  <FaTimes />
+                </IconButton>
+              </td>
             </tr>
           ))}
         </tbody>

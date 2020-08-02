@@ -6,8 +6,8 @@ const Home: React.FC = () => {
     <React.Fragment>
       <h1>Welcome to the Movie Watchlist!</h1>
 
-      <div>
-        <img src={popcorn} alt="popcorn" />
+      <div className="flex">
+        <img src={popcorn} alt="popcorn" className="mr-4" />
         <div>Keep track of the movies you want to watch and your favorite movies of all time!</div>
       </div>
     </React.Fragment>
