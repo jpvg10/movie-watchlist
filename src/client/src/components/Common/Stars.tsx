@@ -12,7 +12,10 @@ interface IStarsProps {
 
 const StarButton: React.FC<IStarButtonProps> = ({ onClick, children }) => {
   return (
-    <button onClick={onClick} className="text-yellow-500 focus:outline-none focus:shadow-outline">
+    <button
+      onClick={onClick}
+      className="text-lg text-yellow-500 focus:outline-none focus:shadow-outline"
+    >
       {children}
     </button>
   );

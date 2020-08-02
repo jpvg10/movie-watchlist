@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaHeart, FaTimes } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { IMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import {
@@ -35,7 +36,9 @@ const Watchlist: React.FC = () => {
       const movieData: IMovie = { name };
       const movie = await addToWatchlist(movieData);
       setMovies([...movies, movie]);
-    } catch (e) {}
+    } catch (e) {
+      toast.error('An error has occurred :(');
+    }
   };
 
   const onMoveToFavorites = (id: string) => async () => {
@@ -43,7 +46,10 @@ const Watchlist: React.FC = () => {
       await moveToFavorites(id);
       const newMovies = movies.filter((movie: IMovie) => movie._id !== id);
       setMovies(newMovies);
-    } catch (e) {}
+      toast.success('Moved!');
+    } catch (e) {
+      toast.error('An error has occurred :(');
+    }
   };
 
   const onDelete = (id: string) => async () => {
@@ -51,7 +57,9 @@ const Watchlist: React.FC = () => {
       await deleteFromWatchlist(id);
       const newMovies = movies.filter((movie: IMovie) => movie._id !== id);
       setMovies(newMovies);
-    } catch (e) {}
+    } catch (e) {
+      toast.error('An error has occurred :(');
+    }
   };
 
   return (

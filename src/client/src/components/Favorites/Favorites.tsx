@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { IMovie, IFavoriteMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
@@ -36,7 +37,9 @@ const Favorites: React.FC = () => {
       const movieData: IMovie = { name };
       const movie = await addToFavorites(movieData);
       setMovies([...movies, movie]);
-    } catch (e) {}
+    } catch (e) {
+      toast.error('An error has ocurred :(');
+    }
   };
 
   const onChangeRating = (id: string) => async (newValue: number) => {
@@ -49,7 +52,9 @@ const Favorites: React.FC = () => {
         return movie;
       });
       setMovies(newMovies);
-    } catch (e) {}
+    } catch (e) {
+      toast.error('An error has ocurred :(');
+    }
   };
 
   const onDelete = (id: string) => async () => {
@@ -57,7 +62,9 @@ const Favorites: React.FC = () => {
       await deleteFromFavorites(id);
       const newMovies = movies.filter((movie: IFavoriteMovie) => movie._id !== id);
       setMovies(newMovies);
-    } catch (e) {}
+    } catch (e) {
+      toast.error('An error has ocurred :(');
+    }
   };
 
   return (

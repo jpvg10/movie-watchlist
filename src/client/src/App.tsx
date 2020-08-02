@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import AuthContext from './utils/authContext';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
@@ -10,6 +11,7 @@ import Favorites from './components/Favorites';
 import Footer from './components/Footer';
 import { IAuthContext } from './utils/interfaces';
 import { getTokenData } from './utils/tokenHelper';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const App: React.FC = () => {
   const tokenData = getTokenData();
@@ -44,6 +46,8 @@ const App: React.FC = () => {
         </div>
         <Footer />
       </div>
+
+      <ToastContainer autoClose={3000} />
     </AuthContext.Provider>
   );
 };
