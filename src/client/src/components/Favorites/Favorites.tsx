@@ -3,16 +3,18 @@ import { FaTimes } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { IMovie, IFavoriteMovie } from '../../utils/interfaces';
 import { ERequestStatus } from '../../utils/enums';
-import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import {
   getFavorites,
   addToFavorites,
   deleteFromFavorites,
   patchFavorite
 } from '../../api/favorites';
-import shootingStar from './shooting-star.png';
+import Spinner from '../Spinner';
+import AddMovieForm from '../AddMovieForm';
 import IconButton from '../Common/IconButton';
 import Stars from '../Common/Stars';
+import UnknownError from '../Common/UnknownError';
+import shootingStar from './shooting-star.png';
 
 const Favorites: React.FC = () => {
   const [movies, setMovies] = useState<IFavoriteMovie[]>([]);
@@ -66,6 +68,14 @@ const Favorites: React.FC = () => {
       toast.error('An error has ocurred :(');
     }
   };
+
+  if (requestStatus === ERequestStatus.LOADING) {
+    return <Spinner />;
+  }
+
+  if (requestStatus === ERequestStatus.FAILED) {
+    return <UnknownError />;
+  }
 
   return (
     <React.Fragment>

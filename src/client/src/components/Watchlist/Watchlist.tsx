@@ -9,9 +9,11 @@ import {
   deleteFromWatchlist,
   moveToFavorites
 } from '../../api/watchlist';
-import AddMovieForm from '../AddMovieForm/AddMovieForm';
+import AddMovieForm from '../AddMovieForm/';
+import Spinner from '../Spinner';
 import IconButton from '../Common/IconButton';
 import seat from './seat.png';
+import UnknownError from '../Common/UnknownError';
 
 const Watchlist: React.FC = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -61,6 +63,14 @@ const Watchlist: React.FC = () => {
       toast.error('An error has occurred :(');
     }
   };
+
+  if (requestStatus === ERequestStatus.LOADING) {
+    return <Spinner />;
+  }
+
+  if (requestStatus === ERequestStatus.FAILED) {
+    return <UnknownError />;
+  }
 
   return (
     <React.Fragment>
