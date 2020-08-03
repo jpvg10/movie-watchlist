@@ -36,6 +36,10 @@ app.use(express.static(path.join(__dirname, '..', '..', 'client', 'build')));
 // routes
 app.use('/api', routes);
 
+app.use('/', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'client', 'build', 'index.html'));
+});
+
 // error handling
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.log(err);

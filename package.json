@@ -1,7 +1,7 @@
 {
-  "name": "movie-watchlist",
-  "version": "1.0.0",
-  "description": "",
+  "description": "Root package.json for Heroku deployment purposes only",
   "scripts": {
+    "heroku-prebuild": "cd server && npm install && cd ../client && npm install && npm run build",
+    "start": "cd server && npm run prod"
   }
 }
