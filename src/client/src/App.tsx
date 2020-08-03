@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import { IAuthContext } from './utils/interfaces';
 import { getTokenData } from './utils/tokenHelper';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Error404 from './components/Error404';
 
 const App: React.FC = () => {
   const tokenData = getTokenData();
@@ -42,6 +43,7 @@ const App: React.FC = () => {
               exact
               render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)}
             />
+            <Route component={Error404} />
           </Switch>
         </div>
         <Footer />
