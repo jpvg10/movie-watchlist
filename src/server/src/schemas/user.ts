@@ -6,16 +6,16 @@ import { IUser, IPayload } from '../interfaces';
 const UserSchema = new mongoose.Schema<IUser>({
   email: {
     type: String,
-    required: true,
+    required: [true, 'Email is required'],
     unique: true,
     trim: true,
     lowercase: true
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Password is required'],
     trim: true,
-    minlength: 7
+    minlength: [7, 'Password should have at least 7 characters']
   },
   tokens: [
     {

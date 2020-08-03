@@ -12,7 +12,15 @@ router.post('/users/signup', async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(201).send({ email: user.email, token });
   } catch (e) {
-    res.status(400).send(e);
+    if (e?.errors?.email?.properties?.message) {
+      res.status(400).send({ message: e.errors.email.properties.message });
+    } else if (e?.errors?.password?.properties?.message) {
+      res.status(400).send({ message: e.errors.password.properties.message });
+    } else if ((e?.message as string).includes('duplicate key error')) {
+      res.status(400).send({ message: 'This email is already in use' });
+    } else {
+      res.status(500).send();
+    }
   }
 });
 
@@ -23,7 +31,11 @@ router.post('/users/login', async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(200).send({ email: user.email, token });
   } catch (e) {
-    res.status(400).send(e);
+    if (e?.message) {
+      res.status(400).send({ message: e.message });
+    } else {
+      res.status(500).send();
+    }
   }
 });
 
