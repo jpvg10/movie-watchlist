@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/node": "^14.0.27",
-    "@types/react": "^16.9.44",
+    "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
@@ -12,9 +12,9 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-toastify": "^6.0.8",
-    "tailwindcss": "^1.6.1",
+    "tailwindcss": "^1.6.2",
     "typescript": "^3.9.7"
   },
   "scripts": {
