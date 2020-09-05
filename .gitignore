@@ -23,5 +23,5 @@ yarn-error.log*
 # dotenv environment variables file
 .env
 
-## tailwind output
+# tailwind output
 tailwind.output.css
