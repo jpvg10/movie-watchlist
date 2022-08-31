@@ -3,6 +3,7 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 
 interface IStarButtonProps {
   onClick(): void;
+  children?: React.ReactNode;
 }
 
 interface IStarsProps {

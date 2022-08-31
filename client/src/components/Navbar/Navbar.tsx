@@ -12,7 +12,9 @@ const Navbar: React.FC = () => {
       await logout();
       deleteTokenData();
       auth?.setIsAuthenticated(false);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

@@ -3,6 +3,7 @@ import React from 'react';
 interface IProps {
   onClick(): void;
   color: 'green' | 'red';
+  children?: React.ReactNode;
 }
 
 const IconButton: React.FC<IProps> = ({ onClick, color, children }) => {

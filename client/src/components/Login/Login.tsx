@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import UserForm from '../UserForm';
 import { login } from '../../api/authentication';
 import { setTokenData } from '../../utils/tokenHelper';
@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const auth = useContext(AuthContext);
 
   if (auth?.isAuthenticated) {
-    return <Redirect to="/" />;
+    return <Navigate replace to="/" />;
   }
 
   const onSubmit = async (email: string, password: string) => {
@@ -19,7 +19,7 @@ const Login: React.FC = () => {
       const data = await login(email, password);
       setTokenData(data);
       auth?.setIsAuthenticated(true);
-    } catch (e) {
+    } catch (e: any) {
       if (e?.response?.status === 400) {
         setErrorMessage(e.response.data.message);
       } else {
