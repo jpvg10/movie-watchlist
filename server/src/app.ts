@@ -18,12 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // mongoose
 mongoose
-  .connect(process.env.MONGODB_URI as string, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
-  })
+  .connect(process.env.MONGODB_URI as string)
   .then(() => {
     console.log('Database connected');
   })
