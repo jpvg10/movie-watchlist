@@ -17,8 +17,8 @@
     "typescript": "^4.8.2"
   },
   "scripts": {
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-    "format": "prettier --write src/**/*.{ts,tsx} --config ./.prettierrc",
+    "lint": "eslint src/**/*.{ts,tsx,json}",
+    "format": "prettier --write src/**/*.{ts,tsx} --config ../.prettierrc",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

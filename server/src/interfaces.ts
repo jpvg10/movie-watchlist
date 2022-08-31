@@ -18,7 +18,7 @@ export interface IMovie {
   _user: Types.ObjectId;
 }
 
-export interface IMovieDocument extends Document {}
+export type IMovieDocument = Document;
 
 export interface IPayload {
   _id: string;
