@@ -16,4 +16,4 @@ I used:
 * [JWT](https://jwt.io/)
 * [Bcrypt](https://github.com/kelektiv/node.bcrypt.js)
 
-You can try it at: https://movie-watchlist-demo.herokuapp.com/
+You can try it at: [https://movie-watchlist.onrender.com](https://movie-watchlist.onrender.com)
