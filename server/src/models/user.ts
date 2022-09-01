@@ -1,13 +1,16 @@
 import mongoose, { Model } from 'mongoose';
 import bcrypt from 'bcrypt';
 import UserSchema from '../schemas/user';
-import { IUser } from '../interfaces';
+import { IUserDocument } from '../interfaces';
 
-export interface IUserModel extends Model<IUser> {
-  findByCredentials(email: string, password: string): Promise<IUser>;
+export interface IUserModel extends Model<IUserDocument> {
+  findByCredentials(email: string, password: string): Promise<IUserDocument>;
 }
 
-UserSchema.statics.findByCredentials = async (email: string, password: string): Promise<IUser> => {
+UserSchema.statics.findByCredentials = async (
+  email: string,
+  password: string
+): Promise<IUserDocument> => {
   const user = await User.findOne({ email });
   if (!user) throw new Error('Wrong email or password');
 
@@ -17,6 +20,6 @@ UserSchema.statics.findByCredentials = async (email: string, password: string): 
   return user;
 };
 
-const User = mongoose.model<IUser, IUserModel>('User', UserSchema);
+const User = mongoose.model<IUserDocument, IUserModel>('User', UserSchema);
 
 export default User;

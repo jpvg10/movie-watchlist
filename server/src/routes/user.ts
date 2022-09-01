@@ -11,7 +11,7 @@ router.post('/users/signup', async (req, res) => {
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({ email: user.email, token });
-  } catch (e) {
+  } catch (e: any) {
     if (e?.errors?.email?.properties?.message) {
       res.status(400).send({ message: e.errors.email.properties.message });
     } else if (e?.errors?.password?.properties?.message) {
@@ -30,7 +30,7 @@ router.post('/users/login', async (req, res) => {
     const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
     res.status(200).send({ email: user.email, token });
-  } catch (e) {
+  } catch (e: any) {
     if (e?.message) {
       res.status(400).send({ message: e.message });
     } else {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import AuthContext from './utils/authContext';
 import Home from './components/Home';
@@ -26,28 +26,28 @@ const App: React.FC = () => {
 
   return (
     <AuthContext.Provider value={contextValue}>
-      <Navbar />
-      <div className="flex flex-col h-screen">
-        <div className="container mx-auto mb-4 px-4 pt-24 sm:pt-20 flex-grow">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route
-              path="/watchlist"
-              exact
-              render={() => (isAuthenticated ? <Watchlist /> : <Redirect to="/" />)}
-            />
-            <Route
-              path="/favorites"
-              exact
-              render={() => (isAuthenticated ? <Favorites /> : <Redirect to="/" />)}
-            />
-            <Route component={Error404} />
-          </Switch>
+      <Router>
+        <Navbar />
+        <div className="flex flex-col h-screen">
+          <div className="container mx-auto mb-4 px-4 pt-24 sm:pt-20 flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/watchlist"
+                element={isAuthenticated ? <Watchlist /> : <Navigate replace to="/" />}
+              />
+              <Route
+                path="/favorites"
+                element={isAuthenticated ? <Favorites /> : <Navigate replace to="/" />}
+              />
+              <Route element={<Error404 />} />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </Router>
 
       <ToastContainer autoClose={3000} />
     </AuthContext.Provider>

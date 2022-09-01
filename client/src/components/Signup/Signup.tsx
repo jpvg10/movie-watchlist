@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import UserForm from '../UserForm';
 import { signup } from '../../api/authentication';
 import { setTokenData } from '../../utils/tokenHelper';
@@ -11,7 +11,7 @@ const Signup: React.FC = () => {
   const auth = useContext(AuthContext);
 
   if (auth?.isAuthenticated) {
-    return <Redirect to="/" />;
+    return <Navigate replace to="/" />;
   }
 
   const onSubmit = async (email: string, password: string) => {
@@ -19,7 +19,7 @@ const Signup: React.FC = () => {
       const data = await signup(email, password);
       setTokenData(data);
       auth?.setIsAuthenticated(true);
-    } catch (e) {
+    } catch (e: any) {
       if (e?.response?.status === 400) {
         setErrorMessage(e.response.data.message);
       } else {
@@ -32,7 +32,9 @@ const Signup: React.FC = () => {
     <React.Fragment>
       <h1>Signup</h1>
       {errorMessage !== '' && <p className="font-bold text-red-600 mb-2">{errorMessage}</p>}
-      <p className="text-xs">You can use a totally fake email here but shh, don't tell anyone.</p>
+      <p className="text-xs">
+        {"You can use a totally fake email here but shh, don't tell anyone."}
+      </p>
       <UserForm buttonLabel="Sign up" onSubmit={onSubmit} />
     </React.Fragment>
   );
