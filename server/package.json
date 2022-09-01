@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint src/**/*.{ts,tsx,json}",
     "format": "prettier --write src/**/*.{ts,tsx} --config ../.prettierrc",
-    "tsc": "tsc",
+    "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
-    "prod": "tsc && node ./build/app.js"
+    "prod": "node ./build/app.js"
   },
   "keywords": [],
   "author": "",
