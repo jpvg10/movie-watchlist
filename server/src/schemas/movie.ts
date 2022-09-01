@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { IMovieDocument } from '../interfaces';
+import { IMovie } from '../interfaces';
 
-const MovieSchema = new mongoose.Schema<IMovieDocument>({
+const MovieSchema = new mongoose.Schema<IMovie>({
   name: {
     type: String,
     required: true

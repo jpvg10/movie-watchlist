@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { IUser, IPayload } from '../interfaces';
+import { IUserDocument, IPayload } from '../interfaces';
 
-const UserSchema = new mongoose.Schema<IUser>({
+const UserSchema = new mongoose.Schema<IUserDocument>({
   email: {
     type: String,
     required: [true, 'Email is required'],
@@ -43,7 +43,7 @@ UserSchema.methods.generateAuthToken = async function () {
   return token;
 };
 
-UserSchema.pre<IUser>('save', async function (next: mongoose.HookNextFunction) {
+UserSchema.pre<IUserDocument>('save', async function (next: (err?: Error) => void) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 8);
   }

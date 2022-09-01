@@ -1,12 +1,9 @@
 import { Document, Types } from 'mongoose';
 
-interface IUserDocument extends Document {
+export interface IUserDocument extends Document {
   email: string;
   password: string;
   tokens: { token: string }[];
-}
-
-export interface IUser extends IUserDocument {
   generateAuthToken(): Promise<string>;
   toJSON(): any;
 }
@@ -18,7 +15,7 @@ export interface IMovie {
   _user: Types.ObjectId;
 }
 
-export type IMovieDocument = Document;
+export interface IMovieDocument extends IMovie, Document {}
 
 export interface IPayload {
   _id: string;

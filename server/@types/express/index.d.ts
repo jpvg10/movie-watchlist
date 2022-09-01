@@ -1,9 +1,9 @@
-import { IUser } from '../../src/interfaces';
+import { IUserDocument } from '../../src/interfaces';
 
 declare global {
   namespace Express {
     interface Request {
-      user: IUser;
+      user: IUserDocument;
       token: string;
     }
   }
